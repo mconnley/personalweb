@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus:8443/fd
+  repository: nexus:8443/personalweb
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -38,7 +38,7 @@ securityContext: {}
 
 service:
   type: NodePort
-  port: 50991
+  port: 50992
 
 ingress:
   enabled: false
@@ -75,7 +75,7 @@ volumeMounts:
 volumes:
   - name: appsettings
     secret:
-      secretName: mc-appsettings-dev
+      secretName: personalweb-appsettings-dev
 
 autoscaling:
   enabled: false
