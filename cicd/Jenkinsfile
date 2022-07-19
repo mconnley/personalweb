@@ -1,4 +1,4 @@
-/* groovylint-disable CompileStatic, DuplicateMapLiteral, DuplicateStringLiteral, GStringExpressionWithinString, NestedBlockDepth */
+/* groovylint-disable CompileStatic, DuplicateMapLiteral, DuplicateStringLiteral, GStringExpressionWithinString, LineLength, NestedBlockDepth */
 pipeline {
   parameters {
     string(name: 'GHFILENAME', defaultValue: '', description: 'The .git filename of the repo')
@@ -112,7 +112,7 @@ spec:
     stage('Push Helm chart') {
       steps {
         container(name: 'curl') {
-          sh('curl -k -u $NEXUS_CREDS_USR:$NEXUS_CREDS_PSW https://$NEXUS_ROOT/repository/$NEXUS_HELM_REPONAME/ --upload-file fd-$BUILD_NUMBER.tgz -v')
+          sh('curl -k -u $NEXUS_CREDS_USR:$NEXUS_CREDS_PSW https://$NEXUS_ROOT/repository/$NEXUS_HELM_REPONAME/ --upload-file personalweb-$BUILD_NUMBER.tgz -v')
         }
       }
     }
