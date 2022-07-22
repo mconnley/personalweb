@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using personalweb.Models;
 using personalweb.DataAccess;
-using Microsoft.Extensions.Logging;
 
 public class SiteCountComponent : ViewComponent
 {
@@ -20,10 +19,10 @@ public class SiteCountComponent : ViewComponent
 
         public IViewComponentResult Invoke(object parameter)
         {
-            var visitorText = "";
+            var model = new SiteCountView();
             try
             {
-                var model = new SiteCount();
+
                 var SiteKey = _configuration["siteKey"];
                 var current = _dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
                 if (current is null)
@@ -37,14 +36,14 @@ public class SiteCountComponent : ViewComponent
                 model.SiteKey = SiteKey;
                 model.Hits = current.Hits;
                 model.id = current.id;
-                visitorText = "You are visitor #" + model.Hits;
+                model.VisitorText = "You are visitor #" + current.Hits;
             }
             catch (System.Exception ex)
             {
                 _logger.LogError(ex, "Caught error in viewcount db operation.");
                 
             }
-            return View(visitorText);
+            return View(model);
         }
 
         
