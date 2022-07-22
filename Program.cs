@@ -22,8 +22,17 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    
 }
+
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("X-Frame-Options", "DENY");
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com; font-src 'self' fonts.googleapis.com fonts.gstatic.com");
+    await next();
+});
+
+app.UseHsts();
 
 app.UseHttpsRedirection();
 
