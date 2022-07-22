@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using personalweb;
 using NLog;
 using NLog.Web;
-using Joonasw.AspNetCore.SecurityHeaders;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
@@ -38,10 +37,10 @@ try
         context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com; font-src 'self' fonts.googleapis.com fonts.gstatic.com");
         context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
         context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
+        context.Response.Headers.Add("Strict-Transport-Security", "max-age=15768000; includeSubDomains; preload");
         await next();
     });
 
-    app.UseStrictTransportSecurity(new HstsOptions(TimeSpan.FromDays(180), includeSubDomains: true, preload: true));
 
     app.UseHttpsRedirection();
 
