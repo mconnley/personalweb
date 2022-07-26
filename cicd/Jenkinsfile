@@ -95,7 +95,7 @@ spec:
                 --verbosity debug \
                 --force \
                 --skip-tls-verify \
-                --destination $NEXUS_ROOT:$NEXUS_DOCKER_PORT/$NEXUS_DOCKER_NAME:$BUILD_NUMBER \
+                --destination $NEXUS_ROOT:$NEXUS_DOCKER_PORT/$NEXUS_DOCKER_NAME:1.0.$BUILD_NUMBER \
                 --destination $NEXUS_ROOT:$NEXUS_DOCKER_PORT/$NEXUS_DOCKER_NAME:latest
             '''
           }
@@ -105,7 +105,7 @@ spec:
     stage('Package Helm chart') {
         steps {
           container(name: 'helm') {
-            sh('helm package ./helm --app-version $BUILD_NUMBER --version $BUILD_NUMBER')
+            sh('helm package ./helm --app-version 1.0.$BUILD_NUMBER --version 1.0.$BUILD_NUMBER')
           }
         }
     }
