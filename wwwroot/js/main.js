@@ -2,8 +2,13 @@ jQuery(document).ready(function($) {
 
 
 	var mastheadheight = $('.ds-header').outerHeight();
-	//console.log(mastheadheight);
-	$(".ds-banner,.ds-main-section").css("margin-top" , mastheadheight);
+	console.log(mastheadheight);
+	if (mastheadheight >= 180) {
+		$(".ds-banner,.ds-main-section").css("margin-top" , mastheadheight);
+	}
+	else {
+		$(".ds-banner,.ds-main-section").css("margin-top" , 180);
+	}
 
 	$(window).scroll(function(){
 	    if ($(window).scrollTop() >= 10) {
