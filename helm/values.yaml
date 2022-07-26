@@ -6,9 +6,9 @@ replicaCount: 1
 
 image:
   repository: nexus:8443/personalweb
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  #tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""

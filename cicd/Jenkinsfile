@@ -1,12 +1,14 @@
 /* groovylint-disable CompileStatic, DuplicateMapLiteral, DuplicateStringLiteral, GStringExpressionWithinString, LineLength, NestedBlockDepth */
 pipeline {
   parameters {
-    string(name: 'GHFILENAME', defaultValue: '', description: 'The .git filename of the repo')
+    string(name: 'GHFILENAME', defaultValue: 'personalweb.git', description: 'The .git filename of the repo')
     string(name: 'GHACCOUNT', defaultValue: '', description: 'The account name of the repo')
-    string(name: 'NEXUS_DOCKER_NAME', defaultValue: '', description: 'The name of the destination Docker image')
+    string(name: 'NEXUS_DOCKER_NAME', defaultValue: 'personalweb', description: 'The name of the destination Docker image')
     string(name: 'NEXUS_HELM_REPONAME', defaultValue: '', description: 'The name of the destination Helm repo ')
     string(name: 'NEXUS_ROOT', defaultValue: '', description: 'The root of the source Nexus repo')
-    string(name: 'NEXUS_DOCKER_PORT', defaultValue: '', description: 'The port on which the Nexus Docker repo listens')
+    string(name: 'NEXUS_DOCKER_PORT', defaultValue: '8443', description: 'The port on which the Nexus Docker repo listens')
+    string(name: 'MAJOR_VERSION', defaultValue: '1', description: 'The major version of this release')
+    string(name: 'MINOR_VERSION', defaultValue: '1', description: 'The minor version of this release')
   }
   environment {
     GHTOKEN = credentials('my-github-token')
@@ -95,7 +97,7 @@ spec:
                 --verbosity debug \
                 --force \
                 --skip-tls-verify \
-                --destination $NEXUS_ROOT:$NEXUS_DOCKER_PORT/$NEXUS_DOCKER_NAME:$BUILD_NUMBER \
+                --destination $NEXUS_ROOT:$NEXUS_DOCKER_PORT/$NEXUS_DOCKER_NAME:$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER \
                 --destination $NEXUS_ROOT:$NEXUS_DOCKER_PORT/$NEXUS_DOCKER_NAME:latest
             '''
           }
@@ -105,14 +107,14 @@ spec:
     stage('Package Helm chart') {
         steps {
           container(name: 'helm') {
-            sh('helm package ./helm --app-version $BUILD_NUMBER --version $BUILD_NUMBER')
+            sh('helm package ./helm --app-version $MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER --version $MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER')
           }
         }
     }
     stage('Push Helm chart') {
       steps {
         container(name: 'curl') {
-          sh('curl -k -u $NEXUS_CREDS_USR:$NEXUS_CREDS_PSW https://$NEXUS_ROOT/repository/$NEXUS_HELM_REPONAME/ --upload-file personalweb-$BUILD_NUMBER.tgz -v')
+          sh('curl -k -u $NEXUS_CREDS_USR:$NEXUS_CREDS_PSW https://$NEXUS_ROOT/repository/$NEXUS_HELM_REPONAME/ --upload-file personalweb-$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER.tgz -v')
         }
       }
     }
