@@ -68,7 +68,7 @@ try
 }
 catch (System.Exception ex)
 {
-        logger.Error(ex, "Stopped program because of exception");
+    logger.Error(ex, "Stopped program because of exception");
     throw;
 }
 finally

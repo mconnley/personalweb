@@ -8,7 +8,7 @@ pipeline {
     string(name: 'NEXUS_ROOT', defaultValue: '', description: 'The root of the source Nexus repo')
     string(name: 'NEXUS_DOCKER_PORT', defaultValue: '8443', description: 'The port on which the Nexus Docker repo listens')
     string(name: 'MAJOR_VERSION', defaultValue: '1', description: 'The major version of this release')
-    string(name: 'MINOR_VERSION', defaultValue: '1', description: 'The minor version of this release')
+    string(name: 'MINOR_VERSION', defaultValue: '0', description: 'The minor version of this release')
   }
   environment {
     GHTOKEN = credentials('my-github-token')

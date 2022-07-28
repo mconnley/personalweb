@@ -5,11 +5,13 @@ namespace personalweb {
     public class UniqueVisitorCounterMiddleware{
         private readonly RequestDelegate _requestDelegate;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<SiteCountComponent> _logger;
 
-        public UniqueVisitorCounterMiddleware(RequestDelegate requestDelegate, IConfiguration configuration)
+        public UniqueVisitorCounterMiddleware(RequestDelegate requestDelegate, IConfiguration configuration, ILogger<SiteCountComponent> logger)
         {
             _requestDelegate = requestDelegate;
             _configuration = configuration;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext context, IDataAccessProvider dataAccessProvider){
@@ -29,20 +31,26 @@ namespace personalweb {
         }
 
         private void IncrementCount(IDataAccessProvider dataAccessProvider){
-            var SiteKey = _configuration["siteKey"];
-            var current = dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
-            if (current is null)
+            try
             {
-                var s = new Models.SiteCount();
-                s.SiteKey = SiteKey;
-                s.Hits = 0;
-                dataAccessProvider.AddSiteCountRecord(s);
-                current = dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
+                var SiteKey = _configuration["siteKey"];
+                var current = dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
+                if (current is null)
+                {
+                    var s = new Models.SiteCount();
+                    s.SiteKey = SiteKey;
+                    s.Hits = 0;
+                    dataAccessProvider.AddSiteCountRecord(s);
+                    current = dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
+                }
+                var newhits = current.Hits + 1;
+                current.Hits = newhits;
+                dataAccessProvider.UpdateSiteCountRecord(current);                
             }
-            var newhits = current.Hits + 1;
-            current.Hits = newhits;
-            dataAccessProvider.UpdateSiteCountRecord(current);
-
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, "Caught exception in Middleware/IncrementCount");
+            }
         }
     }
 
