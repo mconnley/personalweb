@@ -71,10 +71,10 @@ resources: {}
 volumeMounts:
   - name: appsettings
     mountPath: "/app/secrets/"
-  - name: resumelong
-    mountPath: "/app/resumelong"
-  - name: resumeshort
-    mountPath: "/app/resumeshort"
+#  - name: resumelong
+#    mountPath: "/app/wwwroot/resumelong"
+#  - name: resumeshort
+#    mountPath: "/app/wwwroot/resumeshort"
 volumes:
   - name: appsettings
     secret:
