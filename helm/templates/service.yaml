@@ -7,9 +7,10 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
+    - name: main
+      nodePort: {{ .Values.service.port }}
+      port: 9000
       protocol: TCP
-      name: http
+      targetPort: 9000
   selector:
     {{- include "personalweb.selectorLabels" . | nindent 4 }}
