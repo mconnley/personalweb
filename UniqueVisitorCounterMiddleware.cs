@@ -15,7 +15,6 @@ namespace personalweb {
         }
 
         public async Task InvokeAsync(HttpContext context, IDataAccessProvider dataAccessProvider){
-            var userAgent = context.Request.Headers["User-Agent"];
             var visitorIdCookieName = _configuration["visitorIdCookieName"];
             if (!context.Request.GetDisplayUrl().Contains(_configuration["monitorUrl"]) && !context.Request.Headers.Any(h => h.Key == _configuration["monitorAddedHeader"]))
             {
