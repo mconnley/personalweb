@@ -16,8 +16,16 @@ namespace personalweb {
 
         public async Task InvokeAsync(HttpContext context, IDataAccessProvider dataAccessProvider){
             var visitorIdCookieName = _configuration["visitorIdCookieName"];
-            if (!context.Request.GetDisplayUrl().Contains(_configuration["monitorUrl"]) && !context.Request.Headers.Any(h => h.Key == _configuration["monitorAddedHeader"]))
+            if (context.Request.GetDisplayUrl().Contains(_configuration["monitorUrl"]) || context.Request.Headers.Any(h => h.Key == _configuration["monitorAddedHeader"]))
             {
+                var headers = "";
+                foreach (var h in context.Request.Headers)
+                {
+                    headers += String.Format("Got header {0} value {1} \r\n", h.Key, h.Value);
+                }
+                _logger.LogInformation(headers);
+            }
+            else {
                 var visId = context.Request.Cookies[visitorIdCookieName];
                 if (visId == null)
                 {
