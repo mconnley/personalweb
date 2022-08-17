@@ -15,12 +15,13 @@ namespace personalweb {
         }
 
         public async Task InvokeAsync(HttpContext context, IDataAccessProvider dataAccessProvider){
-            if (!context.Request.GetDisplayUrl().Contains("healthz"))
+            var visitorIdCookieName = _configuration["visitorIdCookieName"];
+            if (!context.Request.GetDisplayUrl().Contains(_configuration["monitorUrl"]) && !context.Request.Headers.Any(h => h.Key == _configuration["monitorAddedHeader"]))
             {
-                var visId = context.Request.Cookies["VisitorId"];
+                var visId = context.Request.Cookies[visitorIdCookieName];
                 if (visId == null)
                 {
-                    context.Response.Cookies.Append("VisitorId", Guid.NewGuid().ToString(), new CookieOptions()
+                    context.Response.Cookies.Append(visitorIdCookieName, Guid.NewGuid().ToString(), new CookieOptions()
                     {
                         Path = "/"
                     });

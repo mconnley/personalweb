@@ -13,6 +13,9 @@
 # no gzipped tarballs -- this is specifically aimed at any locally-built helm charts
 *.tgz
 
+#ignore nlog temp internal file
+*internal-nlog.txt
+
 secrets/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
