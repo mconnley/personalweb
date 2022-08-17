@@ -15,7 +15,8 @@ namespace personalweb {
         }
 
         public async Task InvokeAsync(HttpContext context, IDataAccessProvider dataAccessProvider){
-            if (!context.Request.GetDisplayUrl().Contains("healthz"))
+            var userAgent = context.Request.Headers["User-Agent"];
+            if (!context.Request.GetDisplayUrl().Contains("healthz") && !context.Request.Headers.Any(h => h.Key == "personalweb-donotincrement"))
             {
                 var visId = context.Request.Cookies["VisitorId"];
                 if (visId == null)
