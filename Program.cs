@@ -26,21 +26,22 @@ try
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
 
+    builder.Services.AddW3CLogging(logging =>
+    {
+        logging.LoggingFields = W3CLoggingFields.All;
+        logging.FileSizeLimit = 5 * 1024 * 1024;
+        logging.RetainedFileCountLimit = 2;
+        logging.FileName = "personalweb";
+        logging.LogDirectory = "/var/log/personalweb";
+        logging.FlushInterval = TimeSpan.FromSeconds(2);
+    });
+
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandler("/Error");
-        builder.Services.AddW3CLogging(logging =>
-        {
-            logging.LoggingFields = W3CLoggingFields.All;
-            logging.FileSizeLimit = 5 * 1024 * 1024;
-            logging.RetainedFileCountLimit = 2;
-            logging.FileName = "personalweb";
-            logging.LogDirectory = "/var/log/personalweb";
-            logging.FlushInterval = TimeSpan.FromSeconds(2);
-        });
         app.UseW3CLogging();
     }
 
