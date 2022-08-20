@@ -3,9 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using personalweb;
 using NLog;
 using NLog.Web;
+using System.Diagnostics;
+using Microsoft.AspNetCore.HttpLogging;
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-logger.Debug("init main");
+logger.Info("Starting application...");
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -21,14 +23,25 @@ try
     builder.Services.AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(connStr));
     builder.Services.AddScoped<IDataAccessProvider, DataAccessProvider>();
 
+    builder.Logging.ClearProviders();
+    builder.Host.UseNLog();
+
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandler("/Error");
-        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-        
+        builder.Services.AddW3CLogging(logging =>
+        {
+            logging.LoggingFields = W3CLoggingFields.All;
+            logging.FileSizeLimit = 5 * 1024 * 1024;
+            logging.RetainedFileCountLimit = 2;
+            logging.FileName = "personalweb";
+            logging.LogDirectory = "/var/log/personalweb";
+            logging.FlushInterval = TimeSpan.FromSeconds(2);
+        });
+        app.UseW3CLogging();
     }
 
     app.Use(async (context, next) =>
@@ -40,7 +53,6 @@ try
         context.Response.Headers.Add("Strict-Transport-Security", "max-age=15768000; includeSubDomains; preload");
         await next();
     });
-
 
     app.UseHttpsRedirection();
 
@@ -59,12 +71,11 @@ try
 
     lifetime.ApplicationStopping.Register(() =>
     {
+        logger.Info("Waiting to shutdown...");
         Thread.Sleep(5000);
     });
 
-
     app.Run();
-
 }
 catch (System.Exception ex)
 {
@@ -75,4 +86,3 @@ finally
 {
     NLog.LogManager.Shutdown();
 }
-
