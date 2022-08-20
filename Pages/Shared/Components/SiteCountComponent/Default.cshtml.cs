@@ -32,7 +32,7 @@ namespace Components
                 }
                 model.SiteKey = SiteKey;
                 model.Hits = current.Hits;
-                model.Id = current.Id;
+                model.id = current.id;
                 model.VisitorText = "You are visitor #" + current.Hits;
             }
             catch (System.Exception ex)
