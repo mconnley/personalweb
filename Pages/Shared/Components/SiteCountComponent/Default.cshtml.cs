@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using personalweb.Models;
 using personalweb.DataAccess;
 
-public class SiteCountComponent : ViewComponent
+namespace Components
 {
+    public class SiteCountComponent : ViewComponent
+    {
         private readonly IDataAccessProvider _dataAccessProvider;
         private readonly IConfiguration _configuration;
         private readonly ILogger<SiteCountComponent> _logger;
-
-
 
         public SiteCountComponent(IDataAccessProvider dataAccessProvider, IConfiguration configuration, ILogger<SiteCountComponent> logger)
         {
@@ -17,35 +17,29 @@ public class SiteCountComponent : ViewComponent
             _logger = logger;
         }
 
-        public IViewComponentResult Invoke(object parameter)
+        public IViewComponentResult Invoke()
         {
             var model = new SiteCountView();
             try
             {
-
                 var SiteKey = _configuration["siteKey"];
                 var current = _dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
                 if (current is null)
                 {
-                    var s = new SiteCount();
-                    s.SiteKey = SiteKey;
-                    s.Hits = 0;
+                    var s = new SiteCount() { SiteKey = SiteKey, Hits = 0 };
                     _dataAccessProvider.AddSiteCountRecord(s);
                     current = _dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
                 }
                 model.SiteKey = SiteKey;
                 model.Hits = current.Hits;
-                model.id = current.id;
+                model.Id = current.Id;
                 model.VisitorText = "You are visitor #" + current.Hits;
             }
             catch (System.Exception ex)
             {
                 _logger.LogError(ex, "Caught error in viewcount db operation.");
-                
             }
             return View(model);
         }
-
-        
-
+    }
 }

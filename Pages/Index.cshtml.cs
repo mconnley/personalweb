@@ -10,10 +10,10 @@ public class IndexModel : PageModel
     public IndexModel(ILogger<IndexModel> logger)
     {
         _logger = logger;
+        _logger.LogTrace("New IndexModel");
     }
 
     public void OnGet()
     {
-
     }
 }

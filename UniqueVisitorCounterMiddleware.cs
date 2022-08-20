@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Http.Extensions; 
+using Microsoft.AspNetCore.Http.Extensions;
 using personalweb.DataAccess;
+using Components;
 
 namespace personalweb {
     public class UniqueVisitorCounterMiddleware{
@@ -23,7 +24,6 @@ namespace personalweb {
                 {
                     headers += String.Format("Got header {0} value {1} \r\n", h.Key, h.Value);
                 }
-                _logger.LogInformation(headers);
             }
             else {
                 var visId = context.Request.Cookies[visitorIdCookieName];
@@ -46,15 +46,13 @@ namespace personalweb {
                 var current = dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
                 if (current is null)
                 {
-                    var s = new Models.SiteCount();
-                    s.SiteKey = SiteKey;
-                    s.Hits = 0;
+                    var s = new Models.SiteCount { SiteKey = SiteKey, Hits = 0};
                     dataAccessProvider.AddSiteCountRecord(s);
                     current = dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
                 }
                 var newhits = current.Hits + 1;
                 current.Hits = newhits;
-                dataAccessProvider.UpdateSiteCountRecord(current);                
+                dataAccessProvider.UpdateSiteCountRecord(current);
             }
             catch (System.Exception ex)
             {

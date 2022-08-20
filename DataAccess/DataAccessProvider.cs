@@ -26,12 +26,12 @@ namespace personalweb.DataAccess
 
         public SiteCount GetSiteCountSingleRecord(int id)
         {
-            return _context.SiteCounts.FirstOrDefault(s => s.id == id);
+            return _context.SiteCounts.Where(s => s.Id ==id).AsEnumerable().DefaultIfEmpty( new SiteCount()).First();
         }
 
         public SiteCount GetSiteCountSingleRecord(string SiteKey)
         {
-            return _context.SiteCounts.FirstOrDefault(s => s.SiteKey == SiteKey);
+            return _context.SiteCounts.Where(s => s.SiteKey == SiteKey).AsEnumerable().DefaultIfEmpty( new SiteCount()).First();
         }
 
         public void TestConnection()
