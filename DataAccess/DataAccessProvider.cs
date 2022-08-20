@@ -26,7 +26,7 @@ namespace personalweb.DataAccess
 
         public SiteCount GetSiteCountSingleRecord(int id)
         {
-            return _context.SiteCounts.Where(s => s.Id ==id).AsEnumerable().DefaultIfEmpty( new SiteCount()).First();
+            return _context.SiteCounts.Where(s => s.id == id).AsEnumerable().DefaultIfEmpty( new SiteCount()).First();
         }
 
         public SiteCount GetSiteCountSingleRecord(string SiteKey)
