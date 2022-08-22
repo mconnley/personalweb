@@ -3,6 +3,7 @@ pipeline {
   parameters {
     string(name: 'GHFILENAME', defaultValue: 'personalweb.git', description: 'The .git filename of the repo')
     string(name: 'GHACCOUNT', defaultValue: '', description: 'The account name of the repo')
+    string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'The branch to clone')
     string(name: 'NEXUS_DOCKER_NAME', defaultValue: 'personalweb', description: 'The name of the destination Docker image')
     string(name: 'NEXUS_HELM_REPONAME', defaultValue: '', description: 'The name of the destination Helm repo ')
     string(name: 'NEXUS_ROOT', defaultValue: '', description: 'The root of the source Nexus repo')
@@ -69,12 +70,12 @@ spec:
       }
     }
     stage('Checkout git repo') {
-            steps {
-              checkout(
+      steps {
+        checkout(
                 [
                   $class: 'GitSCM',
                   branches: [
-                    [name: '*/main']
+                    [name: '*/$BRANCH_NAME']
                   ],
                   extensions: [],
                   userRemoteConfigs: [
@@ -84,7 +85,7 @@ spec:
                   ]
                 ]
               )
-            }
+      }
     }
     stage('Build and publish Docker image using Kaniko') {
       steps {
