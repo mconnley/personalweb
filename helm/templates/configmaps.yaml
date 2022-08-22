@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: personalweb-mainconfig
+data:
+  mainconfig.json: |-
+    {
+{{- range $key, $val := .Values.configSettings }}
+{{ $key | quote | indent 6}}: {{ $val | quote }}
+{{- end}}
+    }

@@ -24,6 +24,7 @@ namespace personalweb {
                 {
                     headers += String.Format("Got header {0} value {1} \r\n", h.Key, h.Value);
                 }
+                _logger.LogInformation("Headers info {Headers}", headers);
             }
             else {
                 var visId = context.Request.Cookies[visitorIdCookieName];

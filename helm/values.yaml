@@ -4,6 +4,19 @@
 
 replicaCount: 1
 
+database:
+  host: postgres
+  dbname: mydb
+  username: myuser
+  password: mypass
+
+configSettings:
+  headerLogMode: Information
+  siteKey: "mc"
+  visitorIdCookieName: "VisitorId"
+  monitorUrl: "healthz"
+  monitorAddedHeader: "personalweb-donotincrement"
+
 image:
   repository: nexus:8443/personalweb
   pullPolicy: IfNotPresent
@@ -71,21 +84,16 @@ resources: {}
 volumeMounts:
   - name: appsettings
     mountPath: "/app/secrets/"
-#  - name: resumelong
-#    mountPath: "/app/wwwroot/resumelong"
-#  - name: resumeshort
-#    mountPath: "/app/wwwroot/resumeshort"
+  - name: mainconfig
+    mountPath: "/app/configs"
+
 volumes:
   - name: appsettings
     secret:
-      secretName: personalweb-appsettings-dev
-  - name: resumelong
+      secretName: personalweb-secrets
+  - name: mainconfig
     configMap:
-      name: personalweb-resume-longform
-  - name: resumeshort
-    configMap:
-      name: personalweb-resume-shortform
-
+      name: personalweb-mainconfig
 autoscaling:
   enabled: false
   minReplicas: 1
