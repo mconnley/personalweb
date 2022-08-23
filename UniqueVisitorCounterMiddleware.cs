@@ -17,19 +17,18 @@ namespace personalweb {
 
         public async Task InvokeAsync(HttpContext context, IDataAccessProvider dataAccessProvider){
             var visitorIdCookieName = _configuration["visitorIdCookieName"];
-            var headers = "";
-            foreach (var h in context.Request.Headers)
-            {
-                headers += String.Format("Got header {0} value {1} \r\n", h.Key, h.Value);
-            }
-
-            _logger.LogDebug("Headers info {Headers}", headers);
-
             if (context.Request.GetDisplayUrl().Contains(_configuration["monitorUrl"]) || context.Request.Headers.Any(h => h.Key == _configuration["monitorAddedHeader"]))
             {
                 _logger.LogDebug("No increment count because found headers");
             }
             else {
+                var headers = "";
+                foreach (var h in context.Request.Headers)
+                {
+                    headers += String.Format("--- {0} --- {1} | ", h.Key, h.Value);
+                }
+
+                _logger.LogDebug("Headers: {Headers}", headers);
                 var visId = context.Request.Cookies[visitorIdCookieName];
                 if (visId == null)
                 {
