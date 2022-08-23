@@ -82,13 +82,14 @@ resources: {}
   #   memory: 128Mi
 
 volumeMounts:
-  - name: appsettings
+  - name: appsecrets
     mountPath: "/app/secrets/"
   - name: mainconfig
-    mountPath: "/app/configs"
+    mountPath: "/app/appsettings.json"
+    subPath: "appsettings.json"
 
 volumes:
-  - name: appsettings
+  - name: appsecrets
     secret:
       secretName: personalweb-secrets
   - name: mainconfig
