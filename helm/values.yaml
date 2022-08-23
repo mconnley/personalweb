@@ -16,7 +16,7 @@ configSettings:
   siteKey: "mc"
   visitorIdCookieName: "VisitorId"
   monitorUrl: "healthz"
-  monitorAddedHeader: "personalweb-donotincrement"
+  monitorAddedHeader: "Personalweb-Donotincrement"
 
 image:
   repository: nexus:8443/personalweb
