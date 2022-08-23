@@ -11,7 +11,8 @@ database:
   password: mypass
 
 configSettings:
-  headerLogMode: Information
+  defaultMinLogLevel: "Info"
+  nlogInternalLogLevel: "Warn"
   siteKey: "mc"
   visitorIdCookieName: "VisitorId"
   monitorUrl: "healthz"

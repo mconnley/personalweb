@@ -18,7 +18,6 @@ try
     builder.Services.AddHealthChecks();
 
     builder.Configuration.AddJsonFile("secrets/secrets.json", optional: false);
-    builder.Configuration.AddJsonFile("configs/mainconfig.json", optional: false);
 
     var connStr = builder.Configuration["SiteCountsConnectionString"];
     builder.Services.AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(connStr));

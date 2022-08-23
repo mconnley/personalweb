@@ -1,13 +1,48 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: personalweb-mainconfig
+  name: {{ include "personalweb.fullname" . }}
 data:
-  mainconfig.json: |-
-    {
-        "headerLogMode": "{{ .Values.configSettings.headerLogMode }}",
-        "monitorAddedHeader": "{{ .Values.configSettings.monitorAddedHeader }}",
-        "monitorUrl": "{{ .Values.configSettings.monitorUrl }}",
-        "siteKey": "{{ .Values.configSettings.siteKey }}",
-        "visitorIdCookieName": "{{ .Values.configSettings.visitorIdCookieName }}"
-    }
+  appsettings.json: |-
+	{
+	  "Logging": {
+		"LogLevel": {
+		  "Default": "None"
+		},
+		"NLog": {
+		  "IncludeScopes": true
+		}
+	  },
+	  "AllowedHosts": "*",
+	  "headerLogMode": "Information",
+	  "siteKey": "{{ .Values.siteKey }}",
+	  "visitorIdCookieName": "{{ .Values.visitorIdCookieName }}",
+	  "monitorUrl": "{{ .Values.monitorUrl }}",
+	  "monitorAddedHeader": "{{ .Values.monitorAddedHeader }}",
+	  "NLog": {
+		"autoReload": true,
+		"internalLogLevel": "{{ .Values.defaultMinLogLevel }}",
+		"internalLogToConsole": true,
+		"extensions": [
+		  {"assembly": "NLog.Web.AspNetCore"}
+		],
+		"targets": {
+		  "consoleLog": {
+			"type": "console",
+			"layout": "${longdate}|${event-properties:item=EventId_Id}|${level:uppercase=true}|${logger}|${message} ${exception:format=tostring}"
+		  }
+		},
+		"rules":[
+		  {
+			"logger": "Microsoft.*",
+			"finalMinLevel":"Warn",
+			"writeTo": "consoleLog"
+		  },
+		  {
+			"logger": "*",
+			"minLevel":"{{ .Values.defaultMinLogLevel }}",
+			"writeTo": "consoleLog"
+		  }
+		]
+	  }
+	}
