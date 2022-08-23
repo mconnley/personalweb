@@ -8,15 +8,49 @@ For dev purposes only, create a /secrets folder and place the below in /secrets/
 }  
 ```
 
-For dev purposes only, create a /configs folder and place the below in /configs/mainconfig.json
+For dev purposes only, create an appsettings.json file, that looks like this. It is in gitignore and is instead mapped to a ConfigMap when running in k8s
 ```
-  {
-      "siteKey": "foo",
-      "visitorIdCookieName": "VisitorId",
-      "monitorUrl": "healthz",
-      "monitorAddedHeader": "someheader-here",
-      "headerLogLevel": "Information"
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "None"
+    },
+    "NLog": {
+      "IncludeScopes": true
+    }
+  },
+  "AllowedHosts": "*",
+  "siteKey": "mc",
+  "visitorIdCookieName": "VisitorId",
+  "monitorUrl": "healthz",
+  "monitorAddedHeader": "personalweb-donotincrement",
+  "NLog": {
+    "autoReload": true,
+    "internalLogLevel": "Info",
+    "internalLogToConsole": true,
+    "extensions": [
+      {"assembly": "NLog.Web.AspNetCore"}
+    ],
+    "targets": {
+      "consoleLog": {
+        "type": "console",
+        "layout": "${longdate}|${event-properties:item=EventId_Id}|${level:uppercase=true}|${logger}|${message} ${exception:format=tostring}"
+      }
+    },
+    "rules":[
+      {
+        "logger": "Microsoft.*",
+        "finalMinLevel":"Warn",
+        "writeTo": "consoleLog"
+      },
+      {
+        "logger": "*",
+        "minLevel":"Debug",
+        "writeTo": "consoleLog"
+      }
+    ]
   }
+}
 ```
 - siteKey: The db key name for the site in the webcounters table
 - visitorIdCookieName: The name of the cookie for unique visitor tracking
