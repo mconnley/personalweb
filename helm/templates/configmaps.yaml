@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "personalweb.fullname" . }}-mainconfig
+data:
+  appsettings.json: |-
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "None"
+        },
+        "NLog": {
+          "IncludeScopes": true
+        }
+      },
+      "AllowedHosts": "*",
+      "siteKey": "mc",
+      "visitorIdCookieName": "VisitorId",
+      "monitorUrl": "healthz",
+      "monitorAddedHeader": "personalweb-donotincrement",
+      "NLog": {
+        "autoReload": true,
+        "internalLogLevel": "Info",
+        "internalLogToConsole": true,
+        "extensions": [
+          {"assembly": "NLog.Web.AspNetCore"}
+        ],
+        "targets": {
+          "consoleLog": {
+            "type": "console",
+            "layout": "${longdate}|${event-properties:item=EventId_Id}|${level:uppercase=true}|${logger}|${message} ${exception:format=tostring}"
+          }
+        },
+        "rules":[
+          {
+            "logger": "Microsoft.*",
+            "finalMinLevel":"Warn",
+            "writeTo": "consoleLog"
+          },
+          {
+            "logger": "*",
+            "minLevel":"Debug",
+            "writeTo": "consoleLog"
+          }
+        ]
+      }
+    }

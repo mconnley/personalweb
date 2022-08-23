@@ -16,9 +16,13 @@
 #ignore nlog temp internal file
 *internal-nlog.txt
 
-secrets/
+appsettings.json
+appsettings.Development.json
 
-# User-specific files (MonoDevelop/Xamarin Studio)
+secrets/
+configs/
+
+`# User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Mono auto generated files

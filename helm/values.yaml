@@ -4,6 +4,20 @@
 
 replicaCount: 1
 
+database:
+  host: postgres
+  dbname: mydb
+  username: myuser
+  password: mypass
+
+configSettings:
+  defaultMinLogLevel: "Info"
+  nlogInternalLogLevel: "Warn"
+  siteKey: "mc"
+  visitorIdCookieName: "VisitorId"
+  monitorUrl: "healthz"
+  monitorAddedHeader: "personalweb-donotincrement"
+
 image:
   repository: nexus:8443/personalweb
   pullPolicy: IfNotPresent
@@ -38,7 +52,6 @@ securityContext: {}
 
 service:
   type: NodePort
-  port: 30001
 
 ingress:
   enabled: false
@@ -67,25 +80,6 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-
-volumeMounts:
-  - name: appsettings
-    mountPath: "/app/secrets/"
-#  - name: resumelong
-#    mountPath: "/app/wwwroot/resumelong"
-#  - name: resumeshort
-#    mountPath: "/app/wwwroot/resumeshort"
-volumes:
-  - name: appsettings
-    secret:
-      secretName: personalweb-appsettings-dev
-  - name: resumelong
-    configMap:
-      name: personalweb-resume-longform
-  - name: resumeshort
-    configMap:
-      name: personalweb-resume-shortform
-
 autoscaling:
   enabled: false
   minReplicas: 1

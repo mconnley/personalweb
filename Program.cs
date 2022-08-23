@@ -19,7 +19,7 @@ try
 
     builder.Configuration.AddJsonFile("secrets/secrets.json", optional: false);
 
-    var connStr = builder.Configuration.GetConnectionString("SiteCountsContext");
+    var connStr = builder.Configuration["SiteCountsConnectionString"];
     builder.Services.AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(connStr));
     builder.Services.AddScoped<IDataAccessProvider, DataAccessProvider>();
 
