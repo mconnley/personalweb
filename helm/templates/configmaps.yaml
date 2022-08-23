@@ -5,7 +5,9 @@ metadata:
 data:
   mainconfig.json: |-
     {
-{{- range $key, $val := .Values.configSettings }}
-{{ $key | quote | indent 6}}: {{ $val | quote }}
-{{- end}}
+        "headerLogMode": "{{ .Values.configSettings.headerLogMode }}",
+        "monitorAddedHeader": "{{ .Values.configSettings.monitorAddedHeader }}",
+        "monitorUrl": "{{ .Values.configSettings.monitorUrl }}",
+        "siteKey": "{{ .Values.configSettings.siteKey }}",
+        "visitorIdCookieName": "{{ .Values.configSettings.visitorIdCookieName }}"
     }
