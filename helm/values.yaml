@@ -80,21 +80,6 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-
-volumeMounts:
-  - name: appsecrets
-    mountPath: "/app/secrets/"
-  - name: mainconfig
-    mountPath: "/app/appsettings.json"
-    subPath: "appsettings.json"
-
-volumes:
-  - name: appsecrets
-    secret:
-      secretName: personalweb-secrets
-  - name: mainconfig
-    configMap:
-      name: personalweb-mainconfig
 autoscaling:
   enabled: false
   minReplicas: 1
