@@ -22,7 +22,6 @@ try
     var connStr = builder.Configuration["SiteCountsConnectionString"];
     builder.Services.AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(connStr));
     builder.Services.AddScoped<IDataAccessProvider, DataAccessProvider>();
-    
     builder.Logging.ClearProviders();
     //builder.Host.UseNLog();
 
