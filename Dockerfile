@@ -13,7 +13,7 @@ USER appuser
 FROM mcr.microsoft.com/dotnet/sdk:6.0-jammy AS build
 WORKDIR /src
 COPY ["personalweb.csproj", "./"]
-RUN dotnet restore "personalweb.csproj"
+RUN dotnet restore "personalweb.csproj" --configfile "NuGet.Config" -f
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "personalweb.csproj" -c Release -o /app/build
