@@ -8,7 +8,6 @@ using O11yLib;
 var logger = new MyLogger();
 //var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Info("Starting application...", new {BlahBlah = "bleeeblah", myArg = new {foo = 1234, bar = "baz", boop = true }});
-
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +22,7 @@ try
     var connStr = builder.Configuration["SiteCountsConnectionString"];
     builder.Services.AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(connStr));
     builder.Services.AddScoped<IDataAccessProvider, DataAccessProvider>();
-
+    
     builder.Logging.ClearProviders();
     //builder.Host.UseNLog();
 
