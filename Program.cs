@@ -1,13 +1,13 @@
 using personalweb.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using personalweb;
-using NLog;
-using NLog.Web;
 using System.Diagnostics;
 using Microsoft.AspNetCore.HttpLogging;
+using O11yLib;
 
-var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-logger.Info("Starting application...");
+var logger = new MyLogger();
+//var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+logger.Info("Starting application...", new {BlahBlah = "bleeeblah", myArg = new {foo = 1234, bar = "baz", boop = true }});
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -22,9 +22,9 @@ try
     var connStr = builder.Configuration["SiteCountsConnectionString"];
     builder.Services.AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(connStr));
     builder.Services.AddScoped<IDataAccessProvider, DataAccessProvider>();
-
+    
     builder.Logging.ClearProviders();
-    builder.Host.UseNLog();
+    //builder.Host.UseNLog();
 
     builder.Services.AddW3CLogging(logging =>
     {
@@ -72,7 +72,7 @@ try
 
     lifetime.ApplicationStopping.Register(() =>
     {
-        logger.Info("Waiting to shutdown...");
+        //logger.Info("Waiting to shutdown...");
         Thread.Sleep(5000);
     });
 
@@ -80,10 +80,10 @@ try
 }
 catch (System.Exception ex)
 {
-    logger.Error(ex, "Stopped program because of exception");
+    //logger.Error(ex, "Stopped program because of exception");
     throw;
 }
 finally
 {
-    NLog.LogManager.Shutdown();
+    //NLog.LogManager.Shutdown();
 }

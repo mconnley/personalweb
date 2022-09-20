@@ -1,23 +1,23 @@
 /* groovylint-disable CompileStatic, DuplicateMapLiteral, DuplicateStringLiteral, GStringExpressionWithinString, LineLength, NestedBlockDepth */
 pipeline {
-  parameters {
-    string(name: 'GHFILENAME', defaultValue: 'personalweb.git', description: 'The .git filename of the repo')
-    string(name: 'GHACCOUNT', defaultValue: '', description: 'The account name of the repo')
-    string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'The branch to clone')
-    string(name: 'NEXUS_DOCKER_NAME', defaultValue: 'personalweb', description: 'The name of the destination Docker image')
-    string(name: 'NEXUS_HELM_REPONAME', defaultValue: '', description: 'The name of the destination Helm repo ')
-    string(name: 'NEXUS_ROOT', defaultValue: '', description: 'The root of the source Nexus repo')
-    string(name: 'NEXUS_DOCKER_PORT', defaultValue: '8443', description: 'The port on which the Nexus Docker repo listens')
-    string(name: 'MAJOR_VERSION', defaultValue: '1', description: 'The major version of this release')
-    string(name: 'MINOR_VERSION', defaultValue: '0', description: 'The minor version of this release')
-  }
-  environment {
-    GHTOKEN = credentials('my-github-token')
-    NEXUS_CREDS = credentials('nexus-credentials')
-  }
-  agent {
-    kubernetes {
-      yaml """
+    parameters {
+        string(name: 'GHFILENAME', defaultValue: 'personalweb.git', description: 'The .git filename of the repo')
+        string(name: 'GHACCOUNT', defaultValue: '', description: 'The account name of the repo')
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'The branch to clone')
+        string(name: 'NEXUS_DOCKER_NAME', defaultValue: 'personalweb', description: 'The name of the destination Docker image')
+        string(name: 'NEXUS_HELM_REPONAME', defaultValue: '', description: 'The name of the destination Helm repo ')
+        string(name: 'NEXUS_ROOT', defaultValue: '', description: 'The root of the source Nexus repo')
+        string(name: 'NEXUS_DOCKER_PORT', defaultValue: '8443', description: 'The port on which the Nexus Docker repo listens')
+        string(name: 'MAJOR_VERSION', defaultValue: '1', description: 'The major version of this release')
+        string(name: 'MINOR_VERSION', defaultValue: '0', description: 'The minor version of this release')
+    }
+    environment {
+        GHTOKEN = credentials('my-github-token')
+        NEXUS_CREDS = credentials('nexus-credentials')
+    }
+    agent {
+        kubernetes {
+            yaml """
 apiVersion: v1
 kind: Pod
 metadata:
@@ -61,17 +61,17 @@ spec:
             - key: .dockerconfigjson
               path: config.json
       """
+        }
     }
-  }
-  stages {
-    stage('Clean workspace') {
-      steps {
-        cleanWs()
-      }
-    }
-    stage('Checkout git repo') {
-      steps {
-        checkout(
+    stages {
+        stage('Clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('Checkout git repo') {
+            steps {
+                checkout(
                 [
                   $class: 'GitSCM',
                   branches: [
@@ -85,13 +85,13 @@ spec:
                   ]
                 ]
               )
-      }
-    }
-    stage('Build and publish Docker image using Kaniko') {
-      steps {
-        container(name: 'kaniko', shell: '/busybox/sh') {
-          withEnv(['PATH+EXTRA=/busybox']) {
-            sh '''#!/busybox/sh -xe
+            }
+        }
+        stage('Build and publish Docker image using Kaniko') {
+            steps {
+                container(name: 'kaniko', shell: '/busybox/sh') {
+                    withEnv(['PATH+EXTRA=/busybox']) {
+                        sh '''#!/busybox/sh -xe
                 /kaniko/executor \
                 --dockerfile ./Dockerfile \
                 --context `pwd`/ \
@@ -101,23 +101,23 @@ spec:
                 --destination $NEXUS_ROOT:$NEXUS_DOCKER_PORT/$NEXUS_DOCKER_NAME:$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER \
                 --destination $NEXUS_ROOT:$NEXUS_DOCKER_PORT/$NEXUS_DOCKER_NAME:latest
             '''
-          }
+                    }
+                }
+            }
         }
-      }
-    }
-    stage('Package Helm chart') {
-        steps {
-          container(name: 'helm') {
-            sh('helm package ./helm --app-version $MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER --version $MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER')
-          }
+        stage('Package Helm chart') {
+            steps {
+                container(name: 'helm') {
+                    sh('helm package ./helm --app-version $MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER --version $MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER')
+                }
+            }
+        }
+        stage('Push Helm chart') {
+            steps {
+                container(name: 'curl') {
+                    sh('curl -k -u $NEXUS_CREDS_USR:$NEXUS_CREDS_PSW https://$NEXUS_ROOT/repository/$NEXUS_HELM_REPONAME/ --upload-file personalweb-$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER.tgz -v')
+                }
+            }
         }
     }
-    stage('Push Helm chart') {
-      steps {
-        container(name: 'curl') {
-          sh('curl -k -u $NEXUS_CREDS_USR:$NEXUS_CREDS_PSW https://$NEXUS_ROOT/repository/$NEXUS_HELM_REPONAME/ --upload-file personalweb-$MAJOR_VERSION.$MINOR_VERSION.$BUILD_NUMBER.tgz -v')
-        }
-      }
-    }
-  }
 }
