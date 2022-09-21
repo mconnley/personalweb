@@ -16,7 +16,7 @@ COPY ["personalweb.csproj", "./"]
 COPY ["NuGet.Config", "./"]
 COPY ["rootca.crt", "/usr/local/share/ca-certificates/rootca.crt"]
 RUN chmod 644 /usr/local/share/ca-certificates/rootca.crt && update-ca-certificates
-RUN dotnet restore "personalweb.csproj" --configfile "NuGet.Config" -f -v detailed
+RUN dotnet restore "personalweb.csproj" --configfile "NuGet.Config" -f
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "personalweb.csproj" -c Release -o /app/build
