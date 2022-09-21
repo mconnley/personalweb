@@ -14,7 +14,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0-jammy AS build
 WORKDIR /src
 COPY ["personalweb.csproj", "./"]
 COPY ["NuGet.Config", "./"]
-RUN dotnet restore "personalweb.csproj" --configfile "NuGet.Config" -f
+RUN dotnet restore "personalweb.csproj" --configfile "NuGet.Config" -f -v detailed
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "personalweb.csproj" -c Release -o /app/build
