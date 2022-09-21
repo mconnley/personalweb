@@ -14,6 +14,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0-jammy AS build
 WORKDIR /src
 COPY ["personalweb.csproj", "./"]
 COPY ["NuGet.Config", "./"]
+COPY ["rootca.crt", "/usr/local/share/ca-certificates/rootca.crt"]
+RUN chmod 644 /usr/local/share/ca-certificates/rootca.crt && update-ca-certificates
 RUN dotnet restore "personalweb.csproj" --configfile "NuGet.Config" -f -v detailed
 COPY . .
 WORKDIR "/src/."
