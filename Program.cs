@@ -4,6 +4,7 @@ using personalweb;
 using System.Diagnostics;
 using Microsoft.AspNetCore.HttpLogging;
 using O11yLib;
+using NLog;
 
 var logger = new MyLogger();
 //var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -57,6 +58,8 @@ try
     app.UseHttpsRedirection();
 
     app.UseVisitorCount();
+
+    app.UseWebLoggingMiddleware();
 
     app.UseStaticFiles();
 
