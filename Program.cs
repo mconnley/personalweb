@@ -23,6 +23,8 @@ try
     var connStr = builder.Configuration["SiteCountsConnectionString"];
     builder.Services.AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(connStr));
     builder.Services.AddScoped<IDataAccessProvider, DataAccessProvider>();
+    builder.Services.AddScoped<IRequestIPFinder, RequestIPFinder>();
+    builder.Services.AddScoped<MyLogger, MyLogger>();
     builder.Logging.ClearProviders();
     //builder.Host.UseNLog();
 
@@ -82,7 +84,7 @@ try
 }
 catch (System.Exception ex)
 {
-    //logger.Error(ex, "Stopped program because of exception");
+    logger.Error("Stopped program because of exception", null, ex);
     throw;
 }
 finally
