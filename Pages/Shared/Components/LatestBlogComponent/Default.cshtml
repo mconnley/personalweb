@@ -1,0 +1,21 @@
+@model personalweb.Models.LatestBlogView
+@if (@Model.id is not null && @Model.id > 0)
+{
+    <div class="ds-blog-section">
+        <div class="container">
+            <section>
+                @if (@Model.PublishDate > DateTime.Now.AddDays(-60))
+                {
+                    <h2 class="ds-heading">My Latest Blog Post - @Model.PublishDate Central</h2>
+                }
+                else
+                {
+                    <h2 class="ds-heading">My Latest Blog Post</h2>
+                }
+                <h3 class="ds-blog-title"><a href="@Model.Link">@Html.Raw(@Model.TitleRendered)</a></h3>
+                @Html.Raw(@Model.ExcerptRendered)
+                <p class="ds-blog-normal-text">My full blog is available at <a href="https://blog.connley.net">https://blog.connley.net</a></p>
+            </section>
+        </div>
+    </div>    
+}

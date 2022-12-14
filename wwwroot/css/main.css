@@ -43,6 +43,14 @@ svg,img { max-width: 100%; height: auto; }
 .ds-numbervalulist strong{ display: block; color: #F26464; font-size: 36px; font-weight: 800; }
 .ds-numbervalulist span{ font-size: 16px; letter-spacing: 1px; }
 /*-----------------------------------------------------------------
+  2a. >>> Blog Style
+----------------------------------------------------------------*/
+.ds-blog-section{ padding-top: 60px; }
+.ds-blog-section a,a:hover,a:focus,.transition { text-decoration: underline;outline: #000;transition-delay: 0s;transition-duration: 0.4s;transition-property: all;transition-timing-function: ease;box-shadow: none;}
+.ds-blog-section p{ color: #292929; font-size: 16px; line-height: 24px; font-weight: 300; margin-left: 25px; background-color: #dddddd; }
+p.ds-blog-normal-text{ font-size: 18px; line-height: 24px; font-weight: 300; margin-left: unset; background-color: unset; margin-bottom: 0px; }
+.ds-blog-title{ font-size: 18px; font-weight: 300; margin-bottom:10px; }
+/*-----------------------------------------------------------------
   3. >>> About Style
 ----------------------------------------------------------------*/
 .ds-about-section{ padding-top: 60px; padding-bottom: 120px; }

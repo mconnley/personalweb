@@ -6,9 +6,9 @@ namespace personalweb {
     public class UniqueVisitorCounterMiddleware{
         private readonly RequestDelegate _requestDelegate;
         private readonly IConfiguration _configuration;
-        private readonly ILogger<SiteCountComponent> _logger;
+        private readonly ILogger<UniqueVisitorCounterMiddleware> _logger;
 
-        public UniqueVisitorCounterMiddleware(RequestDelegate requestDelegate, IConfiguration configuration, ILogger<SiteCountComponent> logger)
+        public UniqueVisitorCounterMiddleware(RequestDelegate requestDelegate, IConfiguration configuration, ILogger<UniqueVisitorCounterMiddleware> logger)
         {
             _requestDelegate = requestDelegate;
             _configuration = configuration;
