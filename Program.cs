@@ -47,10 +47,15 @@ try
         app.UseW3CLogging();
     }
 
+    const string csp = "default-src 'self'; style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com; " +
+    "font-src 'self' fonts.googleapis.com fonts.gstatic.com; " +
+    "script-src 'self' www.googletagmanager.com static.cloudflareinsights.com 'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg='; " +
+    "connect-src analytics.google.com stats.g.doubleclick.net";
+
     app.Use(async (context, next) =>
     {
         context.Response.Headers.Add("X-Frame-Options", "DENY");
-        context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com; font-src 'self' fonts.googleapis.com fonts.gstatic.com");
+        context.Response.Headers.Add("Content-Security-Policy", csp);
         context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
         context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
         context.Response.Headers.Add("Strict-Transport-Security", "max-age=15768000; includeSubDomains; preload");
