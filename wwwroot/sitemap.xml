@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.mattconnley.com/</loc>
-    <lastmod>2022-09-20</lastmod>
+    <loc>https://connley.net</loc>
+    <lastmod>2022-12-22</lastmod>
+    <changefreq>always</changefreq>
   </url>
   <url>
-    <loc>http://www.mattconnley.com/index</loc>
-    <lastmod>2022-09-20</lastmod>
+    <loc>https://connley.net/resumeshort/matthew-connley-resume-short.pdf</loc>
+    <lastmod>2022-12-22</lastmod>
+    <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://connley.net/resumelong/matthew-connley-resume-long.pdf</loc>
+    <lastmod>2022-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>  
 </urlset>
