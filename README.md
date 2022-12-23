@@ -5,7 +5,8 @@ For dev purposes only, create a /secrets folder and place the below in /secrets/
 ```
 {
   "SiteCountsConnectionString": "Host=postgres;Database=database;Username=user;Password=pass",
-  "latestBlogUrl": "https://blog.mywordpressblog.net/wp-json/wp/v2/posts?per_page=1"
+  "latestBlogUrl": "https://blog.mywordpressblog.net/wp-json/wp/v2/posts?per_page=1",
+  "googleAnalyticsTagId": "G-FOO0BAR"
 }  
 ```
 
