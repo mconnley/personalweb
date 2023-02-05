@@ -50,7 +50,7 @@ try
     const string csp = "default-src 'self'; style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com; " +
     "font-src 'self' fonts.googleapis.com fonts.gstatic.com; " +
     "script-src 'self' www.googletagmanager.com static.cloudflareinsights.com 'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg='; " +
-    "connect-src analytics.google.com stats.g.doubleclick.net";
+    "connect-src analytics.google.com static.cloudflareinsights.com stats.g.doubleclick.net";
 
     app.Use(async (context, next) =>
     {
