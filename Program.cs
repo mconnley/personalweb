@@ -47,10 +47,12 @@ try
         app.UseW3CLogging();
     }
 
-    const string csp = "default-src 'self'; style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com; " +
+    const string csp = "default-src 'self'; " +
+    "style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com www.googletagmanager.com; " +
+    "style-src 'self' www.googletagmanager.com; " +
     "font-src 'self' fonts.googleapis.com fonts.gstatic.com; " +
     "script-src 'self' www.googletagmanager.com static.cloudflareinsights.com 'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg='; " +
-    "connect-src 'self' analytics.google.com static.cloudflareinsights.com stats.g.doubleclick.net";
+    "connect-src 'self' www.googletagmanager.com analytics.google.com static.cloudflareinsights.com stats.g.doubleclick.net";
 
     app.Use(async (context, next) =>
     {
