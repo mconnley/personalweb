@@ -51,8 +51,8 @@ try
     "style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com www.googletagmanager.com; " +
     "style-src 'self' www.googletagmanager.com; " +
     "font-src 'self' fonts.googleapis.com fonts.gstatic.com; " +
-    "script-src 'self' www.googletagmanager.com static.cloudflareinsights.com 'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg='; " +
-    "connect-src 'self' www.googletagmanager.com analytics.google.com static.cloudflareinsights.com stats.g.doubleclick.net";
+    "script-src 'self' www.googletagmanager.com www.google-analytics.com static.cloudflareinsights.com 'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg=' 'sha256-cbuyYQIXVmwj6nfGeovJBxf2xIamnPjeYTDjWlPC2fk='; " +
+    "connect-src 'self' www.googletagmanager.com analytics.google.com www.google-analytics.com static.cloudflareinsights.com stats.g.doubleclick.net";
 
     app.Use(async (context, next) =>
     {
