@@ -11,14 +11,32 @@
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/aos/dist/aos.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
-    <!-- CSS and other elements based on: https://htmltemplates.co/free-html5-templates/defolio-free-bootstrap-resume-html-template -->
+    <link rel="icon" href="/favicon.ico">
     <title>Matthew Connley - Experienced Technology Leader</title>
     <meta name="description" content="Matthew Connley is an experienced engineer and technology leader based in Chicago with a broad range of skills including software development, enterprise architecture, infrastructure automation, DevOps, and SRE.">
+    <meta name="robots" content="max-image-preview:large" />
+    <link rel="canonical" href="https://connley.net/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Matt Connley - Technology Professional" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Matt Connley - Technology Professional" />
+    <meta property="og:description" content="Matt Connley - Technology Professional" />
+    <meta property="og:url" content="https://connley.net/" />
+    <meta property="og:image" content="https://connley.net/images/Logo512x512.jpg" />
+    <meta property="og:image:secure_url" content="https://connley.net/images/Logo512x512.jpg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Matt Connley - A Technology Blog" />
+    <meta name="twitter:description" content="A Technology Blog" />
+    <meta name="twitter:image" content="https://connley.net/images/Logo512x512.jpg" />
+    <!-- CSS and other elements based on: https://htmltemplates.co/free-html5-templates/defolio-free-bootstrap-resume-html-template -->
+    <script type="application/ld+json">
+        {"@@context":"https://schema.org","@@graph":[{"@@type":"BreadcrumbList","@@id":"https://connley.net/#breadcrumblist","itemListElement":[{"@@type":"ListItem","@@id":"https://connley.net/#listItem","position":1,"item":{"@@type":"WebPage","@@id":"https://connley.net/","name":"Home","description":"Technology Professional","url":"https://connley.net/"}}]},{"@@type":"CollectionPage","@@id":"https://connley.net/#collectionpage","url":"https://connley.net/","name":"Technology Professional","description":"Technology Professional","inLanguage":"en-US","isPartOf":{"@@id":"https://connley.net/#website"},"breadcrumb":{"@@id":"https://connley.net/#breadcrumblist"},"about":{"@@id":"https://connley.net/#person"}},{"@@type":"Person","@@id":"https://connley.net/#person","name":"Matt","image":{"@@type":"ImageObject","@@id":"https://connley.net/#personImage","url":"https://connley.net/images/profile-image.jpg","width":96,"height":96,"caption":"Matt Connley"},"sameAs":["https://connley.net/","https://www.linkedin.com/in/mattconnley/","https://www.github.com/mconnley","https://www.facebook.com/matt.connley","https://www.instagram.com/connleymatt/"]},{"@@type":"WebSite","@@id":"https://connley.net/#website","url":"https://connley.net/","name":"Matt Connley","description":"Technology Professional","inLanguage":"en-US","publisher":{"@@id":"https://connley.net/#person"}}]}
+    </script>
 </head>
 <body>
     @RenderBody()
     <footer class="ds-footer text-center">
-        <span class="ds-copyright">© 2022 @await Component.InvokeAsync("SiteCountComponent")</span>
+        <span class="ds-copyright">© @DateTime.Now.Year @await Component.InvokeAsync("SiteCountComponent")</span>
         </div>
     </footer>
     <script src="lib/jquery/jquery.min.js"></script>
