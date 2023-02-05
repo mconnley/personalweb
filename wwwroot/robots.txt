@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://www.mattconnley.com/sitemap.xml
+Sitemap: https://connley.net/sitemap.xml
