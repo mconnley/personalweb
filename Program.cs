@@ -91,7 +91,7 @@ try
 }
 catch (System.Exception ex)
 {
-    logger.Error("Stopped program because of exception", null, ex);
+    logger.Error("Stopped program because of exception", new object(), ex);
     throw;
 }
 finally

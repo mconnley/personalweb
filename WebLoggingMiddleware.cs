@@ -30,7 +30,7 @@ public class WebLoggingMiddleware
         }
         catch (System.Exception ex)
         {
-            _logger.Error("Exception occurred in WebLoggingMiddleware", null, ex);
+            _logger.Error("Exception occurred in WebLoggingMiddleware", new object(), ex);
         }
         await _requestDelegate(context);
     }
