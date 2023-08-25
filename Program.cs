@@ -51,7 +51,7 @@ try
     "style-src-elem 'self' fonts.googleapis.com fonts.gstatic.com www.googletagmanager.com 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; " +
     "style-src 'self' www.googletagmanager.com; " +
     "font-src 'self' fonts.googleapis.com fonts.gstatic.com; " +
-    "script-src 'self' www.googletagmanager.com www.google-analytics.com static.cloudflareinsights.com www.clarity.ms 'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg=' 'sha256-cbuyYQIXVmwj6nfGeovJBxf2xIamnPjeYTDjWlPC2fk=' 'sha256-ewJP0yiTTwKA6yfoHujCbzDgg++cSWD0zitZgpX/l08=' 'sha256-+fgVaucvkGqts851ZCDGqdYanjfg3Nk2EiDmGHMUNXE=' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; " +
+    "script-src 'self' www.googletagmanager.com www.google-analytics.com static.cloudflareinsights.com www.clarity.ms 'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg=' 'sha256-cbuyYQIXVmwj6nfGeovJBxf2xIamnPjeYTDjWlPC2fk=' 'sha256-ewJP0yiTTwKA6yfoHujCbzDgg++cSWD0zitZgpX/l08=' 'sha256-+fgVaucvkGqts851ZCDGqdYanjfg3Nk2EiDmGHMUNXE=' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' 'sha256-rrzZSzRSKLmzh+cfP70uKaRJKviF4BVWljynSaaETpQ='; " +
     "connect-src 'self' www.googletagmanager.com analytics.google.com www.google-analytics.com static.cloudflareinsights.com stats.g.doubleclick.net www.clarity.ms r.clarity.ms";
 
     app.Use(async (context, next) =>
