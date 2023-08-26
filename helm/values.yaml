@@ -23,6 +23,9 @@ secretData:
   googleAnalyticsTagId: "G-FOO0BAR"
   googleTagsId: "GTM-BAZBOP"
 
+env:
+  "ASPNETCORE_ENVIRONMENT": "Production"
+
 image:
   repository: nexus:8443/personalweb
   pullPolicy: IfNotPresent
