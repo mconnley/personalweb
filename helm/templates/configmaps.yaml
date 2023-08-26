@@ -14,13 +14,13 @@ data:
         }
       },
       "AllowedHosts": "*",
-      "siteKey": "mc",
-      "visitorIdCookieName": "VisitorId",
-      "monitorUrl": "healthz",
-      "monitorAddedHeader": "personalweb-donotincrement",
+      "siteKey": "{{ .Values.configSettings.siteKey }}",
+      "visitorIdCookieName": "{{ .Values.configSettings.visitorIdCookieName }}",
+      "monitorUrl": "{{ .Values.configSettings.monitorUrl }}",
+      "monitorAddedHeader": "{{ .Values.configSettings.monitorAddedHeader }}",
       "NLog": {
         "autoReload": true,
-        "internalLogLevel": "Info",
+        "internalLogLevel": "{{ .Values.configSettings.nlogInternalLogLevel }}",
         "internalLogToConsole": true,
         "extensions": [
           {"assembly": "NLog.Web.AspNetCore"}
@@ -39,7 +39,7 @@ data:
           },
           {
             "logger": "*",
-            "minLevel":"Debug",
+            "minLevel":"{{ .Values.configSettings.defaultMinLogLevel }}",
             "writeTo": "consoleLog"
           }
         ]
