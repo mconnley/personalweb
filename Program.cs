@@ -10,6 +10,7 @@ var logger = new MyLogger();
 
 try
 {
+    logger.Info("Starting...", new object());
     var builder = WebApplication.CreateBuilder(args);
 
     // Add services to the container.
