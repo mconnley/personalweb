@@ -45,6 +45,7 @@ try
     {
         app.UseExceptionHandler("/Error");
         app.UseW3CLogging();
+        app.UseHsts();
     }
 
     const string csp = "default-src 'self'; " +
