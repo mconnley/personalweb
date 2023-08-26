@@ -7,10 +7,10 @@ using O11yLib;
 using NLog;
 
 var logger = new MyLogger();
-//var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-logger.Info("Starting application...", new {BlahBlah = "bleeeblah", myArg = new {foo = 1234, bar = "baz", boop = true }});
+
 try
 {
+    logger.Info("Starting...", new object());
     var builder = WebApplication.CreateBuilder(args);
 
     // Add services to the container.
@@ -49,6 +49,7 @@ try
     // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
     {
+        logger.Info("Running in development mode...", new object());
         app.UseExceptionHandler("/Error");
         app.UseW3CLogging();
         app.UseHsts();
@@ -99,7 +100,7 @@ try
 
     lifetime.ApplicationStopping.Register(() =>
     {
-        //logger.Info("Waiting to shutdown...");
+        logger.Info("Waiting to shutdown...", new object());
         Thread.Sleep(5000);
     });
 
