@@ -53,6 +53,11 @@ spec:
             - name: mainconfig
               mountPath: "/app/appsettings.json"
               subPath: "appsettings.json"
+          env:
+          {{ range $k, $v := .Values.env }}
+            - name: {{ $k | quote }}
+              value: {{ $v | quote }}
+          {{- end }}
       volumes:
         - name: appsecrets
           secret:
