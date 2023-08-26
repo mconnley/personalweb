@@ -99,7 +99,7 @@ try
 
     lifetime.ApplicationStopping.Register(() =>
     {
-        //logger.Info("Waiting to shutdown...");
+        logger.Info("Waiting to shutdown...", new object());
         Thread.Sleep(5000);
     });
 
