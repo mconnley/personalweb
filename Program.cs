@@ -70,7 +70,7 @@ try
         "connect-src 'self' https://*.google.com https://*.clarity.ms https://*.google-analytics.com https://*.doubleclick.net; " +
         "font-src 'self' https://fonts.gstatic.com; " +
         "frame-src 'self'; " +
-        "img-src 'self' https://*.bing.com; " +
+        "img-src 'self' https://*.bing.com https://*.clarity.ms; " +
         "manifest-src 'self'; " +
         "media-src 'self'; " +
         "worker-src 'none';";
