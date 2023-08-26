@@ -55,13 +55,18 @@ try
     }
 
     const string csp = "default-src 'self'; " +
-    "connect-src 'self' www.googletagmanager.com https://ampcid.google.com analytics.google.com www.google-analytics.com static.cloudflareinsights.com stats.g.doubleclick.net https://*.clarity.ms; " +
-    "font-src 'self' fonts.googleapis.com fonts.gstatic.com; " +
-    "frame-src www.googletagmanager.com; " +
-    "img-src 'self' https://c.bing.com www.google-analytics.com https://www.google.com/ads/ga-audiences www.googletagmanager.com ssl.gstatic.com www.gstatic.com https://*.clarity.ms stats.g.doubleclick.net/r/; " +
-    "style-src 'self' 'unsafe-inline' tagmanager.google.com fonts.googleapis.com; " +
-    "style-src-elem 'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com www.googletagmanager.com https://*.clarity.ms; " +
-    "script-src 'self' 'unsafe-eval' 'unsafe-inline' ajax.cloudflare.com https://static.cloudflareinsights.com google-analytics.com https://ssl.google-analytics.com www.google-analytics.com tagmanager.google.com googletagmanager.com www.googletagmanager.com https://*.clarity.ms stats.g.doubleclick.net;";
+        "script-src 'report-sample' 'self' https://*.cloudflareinsights.com https://*.clarity.ms https://*.google-analytics.com https://*.googletagmanager.com " +
+        "'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg=' 'sha256-cbuyYQIXVmwj6nfGeovJBxf2xIamnPjeYTDjWlPC2fk=' 'sha256-+fgVaucvkGqts851ZCDGqdYanjfg3Nk2EiDmGHMUNXE='; " +
+        "style-src 'report-sample' 'self' https://*.googleapis.com 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; " +
+        "object-src 'none';  " +
+        "base-uri 'self';  " +
+        "connect-src 'self' https://*.google.com https://*.clarity.ms https://*.google-analytics.com; " +
+        "font-src 'self' https://fonts.gstatic.com; " +
+        "frame-src 'self'; " +
+        "img-src 'self' https://*.bing.com; " +
+        "manifest-src 'self'; " +
+        "media-src 'self'; " +
+        "worker-src 'none';";
 
     app.Use(async (context, next) =>
     {
