@@ -26,7 +26,13 @@ try
     builder.Services.AddScoped<IRequestIPFinder, RequestIPFinder>();
     builder.Services.AddScoped<MyLogger, MyLogger>();
     builder.Logging.ClearProviders();
-    //builder.Host.UseNLog();
+    
+    builder.Services.AddHsts(options =>
+    {
+        options.Preload = true;
+        options.IncludeSubDomains = true;
+        options.MaxAge = TimeSpan.FromDays(90);
+    });
 
     builder.Services.AddW3CLogging(logging =>
     {
@@ -45,6 +51,7 @@ try
     {
         app.UseExceptionHandler("/Error");
         app.UseW3CLogging();
+        app.UseHsts();
     }
 
     const string csp = "default-src 'self'; " +

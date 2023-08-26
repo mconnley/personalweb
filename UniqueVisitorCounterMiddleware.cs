@@ -39,7 +39,12 @@ namespace personalweb {
                 {
                     context.Response.Cookies.Append(visitorIdCookieName, Guid.NewGuid().ToString(), new CookieOptions()
                     {
-                        Path = "/"
+                        Path = "/", Secure = true, 
+                        MaxAge = new TimeSpan(15, 0, 0, 0), 
+                        SameSite = SameSiteMode.Lax, 
+                        HttpOnly = true, 
+                        Domain = "connley.net", 
+                        IsEssential = true
                     });
                     IncrementCount(dataAccessProvider);
                 }
