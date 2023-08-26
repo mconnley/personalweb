@@ -7,8 +7,7 @@ using O11yLib;
 using NLog;
 
 var logger = new MyLogger();
-//var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-logger.Info("Starting application...", new {BlahBlah = "bleeeblah", myArg = new {foo = 1234, bar = "baz", boop = true }});
+
 try
 {
     var builder = WebApplication.CreateBuilder(args);
