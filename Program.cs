@@ -54,10 +54,12 @@ try
         app.UseHsts();
     }
 
+
     const string csp = "default-src 'self'; " +
-        "script-src 'report-sample' 'self' https://*.cloudflareinsights.com https://*.clarity.ms https://*.google-analytics.com https://*.googletagmanager.com " +
-        "'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg=' 'sha256-cbuyYQIXVmwj6nfGeovJBxf2xIamnPjeYTDjWlPC2fk=' 'sha256-+fgVaucvkGqts851ZCDGqdYanjfg3Nk2EiDmGHMUNXE=' 'sha256-hLhbsQSVM9L1+xP79z6te0i73yajXLMzlP7jGQ8+QUY='; " +
-        "style-src 'report-sample' 'self' https://*.googleapis.com 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; " +
+        "script-src 'self' https://*.cloudflareinsights.com https://*.clarity.ms https://*.google-analytics.com https://*.googletagmanager.com nonce-5192bb0f8813e6d74203ff6d761f51efc93f1adcaef59a76c638e05f55f95ac6 " +
+        "'sha256-Zj6tAEuGHORkcFg//Mecf8qY7fYErbxO1toHp7a1FNg=' 'sha256-cbuyYQIXVmwj6nfGeovJBxf2xIamnPjeYTDjWlPC2fk=' 'sha256-+fgVaucvkGqts851ZCDGqdYanjfg3Nk2EiDmGHMUNXE='; " +
+        "style-src 'self' https://*.googleapis.com 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; " +
+        "style-src-elem 'self' https://*.googleapis.com 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; " +
         "object-src 'none';  " +
         "base-uri 'self';  " +
         "connect-src 'self' https://*.google.com https://*.clarity.ms https://*.google-analytics.com; " +
