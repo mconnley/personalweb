@@ -13,7 +13,6 @@ try
     logger.Info("Starting...", new object());
     var builder = WebApplication.CreateBuilder(args);
 
-    // Add services to the container.
     builder.Services.AddRazorPages();
 
     builder.Services.AddHealthChecks();
@@ -44,17 +43,22 @@ try
         logging.FlushInterval = TimeSpan.FromSeconds(2);
     });
 
+    builder.Services.Configure<ForwardedHeadersOptions>(options =>
+    {
+        options.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor | Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
+    });
+
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
     {
-        logger.Info("Running in development mode...", new object());
+        logger.Info("Running in prod mode...", new object());
         app.UseExceptionHandler("/Error");
         app.UseW3CLogging();
+        app.UseForwardedHeaders();
         app.UseHsts();
     }
-
 
     const string csp = "default-src 'self'; " +
         "script-src 'self' https://*.cloudflareinsights.com https://*.clarity.ms https://*.google-analytics.com https://*.googletagmanager.com " +
@@ -96,6 +100,7 @@ try
     app.MapRazorPages();
 
     app.MapHealthChecks("/healthz");
+
     IHostApplicationLifetime lifetime = app.Lifetime;
 
     lifetime.ApplicationStopping.Register(() =>
