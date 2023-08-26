@@ -49,6 +49,7 @@ try
     // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
     {
+        logger.Info("Running in development mode...", new object());
         app.UseExceptionHandler("/Error");
         app.UseW3CLogging();
         app.UseHsts();
