@@ -3,8 +3,7 @@
 [![npm](https://img.shields.io/npm/v/remixicon.svg?labelColor=4A4A4A&color=006AFF&style=flat-square)](https://www.npmjs.com/package/remixicon)
 [![downloads](https://img.shields.io/npm/dt/remixicon.svg?labelColor=4A4A4A&color=23AF5F&style=flat-square)](https://www.npmjs.com/package/remixicon)
 [![](https://data.jsdelivr.com/v1/package/npm/remixicon/badge)](https://www.jsdelivr.com/package/npm/remixicon)
-[![spectrum](https://img.shields.io/badge/沟通-Spectrum-7028F5.svg?labelColor=4A4A4A&style=flat-square)](https://spectrum.chat/remixdesign/remixicon)
-[![donate](https://img.shields.io/badge/-赞助-DA6429.svg?style=flat-square)](https://remixicon.com/#donate)
+[![donate](https://img.shields.io/badge/-赞助-DA6429.svg?style=flat-square)](https://remixicon.com/support-us)
 
 [English](./README.md) | 简体中文
 
@@ -33,6 +32,7 @@ SVG本身也是一种图片格式，所以您可以像使用其他格式（如JP
 ```
 
 ### Webfont 用法
+
 > **Note:** Webfont支持npm安装引入、CDN引入或者手动下载的方式引入到项目当中，三选一即可。
 
 #### 安装引入
@@ -46,18 +46,18 @@ npm install remixicon --save
 ```
 import 'remixicon/fonts/remixicon.css'
 ```
+
 > 入口文件引入CSS
 
 #### CDN引入
+
 如果不打算通过安装的方式使用，可以直接复制下面这行代码到您HTML文档的 &lt;head&gt; 标签中，这样就完成了CDN方式的图标引入，简单快捷，推荐方式。
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
 ```
 
-> ==**重要提醒**==：我们从 v2.2.0 版本开始将我们的 CDN 服务迁移到了 jsDelivr 上，之前的 CDN 链接将在2020年1月30日停止服务，请务必切换您的 CDN 为最新的服务链接，以免影响您的业务，对于由此带来的影响和不便，我们深感抱歉。
->
-> 上面 CDN 链接中的 `@2.5.0` 可以更改为任何我们曾经发布过的历史版本号。
+> 上面 CDN 链接中的 `@3.4.0` 可以更改为任何我们曾经发布过的历史版本号。
 
 #### 手动下载引入
 
@@ -66,17 +66,19 @@ import 'remixicon/fonts/remixicon.css'
 #### 使用
 
 引入Remix Icon图标库后，就可以在web项目中使用了，只要在使用图标的时候将图标名称作为类名就可以了。类名规则：ri-{name}-{style}
+
 ```html
 <i class="ri-admin-line"></i>
 <i class="ri-admin-fill"></i>
 ```
+
 > **注意：** 从 v2.0.0 开始，我们修改了 class 名称的前缀，从 `remixicon-` 改为了 `ri-`;
 
 > **Note:** 您可以到官网 [remixicon.com](https://remixicon.com) 查阅图标对应的名称，然后在名称后添加图标风格，`-line` 代表线性风格，`-fill`代表面型风格。
 
 #### 大小
 
-在`v1.3.1`及以上版本的字体使用方式下，RemixIcon 可以通过 `remixicon.css` 中集成的一些 class 来快捷改变图标的大小。这些 class 使用 `em` 相对大小单位来控制图标尺寸，相对值为图标的父类元素的字体大小值。您也可以通过 `ri-fw` 来使得图标宽度固定，例如在列表场景中使用。class 举例：
+在 `v1.3.1`及以上版本的字体使用方式下，RemixIcon 可以通过 `remixicon.css` 中集成的一些 class 来快捷改变图标的大小。这些 class 使用 `em` 相对大小单位来控制图标尺寸，相对值为图标的父类元素的字体大小值。您也可以通过 `ri-fw` 来使得图标宽度固定，例如在列表场景中使用。class 举例：
 
 ```html
 <div style="font-size: 24px;">
@@ -105,6 +107,7 @@ import 'remixicon/fonts/remixicon.css'
   <use xlink:href="存放路径/remixicon.symbol.svg#ri-admin-fill"></use>
 </svg>
 ```
+
 ```css
 .remix {
   width: 24px;
@@ -113,9 +116,10 @@ import 'remixicon/fonts/remixicon.css'
 }
 ```
 
-> **Note:** 上面示例中 `#` 后面的`ri-admin-fill`可以替换为任何 Remix Icon 图标名称，您可以到官网 [remixicon.com](https://remixicon.com) 查阅图标对应的名称，然后在名称后添加图标风格，`-line` 代表线性风格，`-fill` 代表面型风格。`remixicon.symbol.svg`文件默认是无法预览查看的，只能通过 `<use>` 使用之后查看。
+> **Note:** 上面示例中 `#` 后面的 `ri-admin-fill`可以替换为任何 Remix Icon 图标名称，您可以到官网 [remixicon.com](https://remixicon.com) 查阅图标对应的名称，然后在名称后添加图标风格，`-line` 代表线性风格，`-fill` 代表面型风格。`remixicon.symbol.svg`文件默认是无法预览查看的，只能通过 `<use>` 使用之后查看。
 
 ## 协作共建
+
 > **Note:** 为了保证每一枚图标的质量，现阶段我们还不接受第三方小伙伴绘制的图标。如果您想要向 Remix Icon 贡献自己设计的图标，请创建一个[issue](https://github.com/Remix-Design/remixicon/issues)来提交自己的图标设计，并在issue详情中附上自己图标的下载地址，我们会按照 Remix Icon图标风格规范进行审核，通过后将会添加到图标库中，并在更新日志中署上作者的ID。如果你对GitHub不是很熟悉，不清除issue和pull request是什么，也可以直接给我们发邮件 `jimmy@remixdesign.cn`，内容表述清楚即可。
 
 ### 图标申请
@@ -126,10 +130,16 @@ import 'remixicon/fonts/remixicon.css'
 
 ### 图标搜索关键词
 
-目前我们的[图标官网](https://remixicon.com)是通过[`tags.json`](https://github.com/Remix-Design/remixicon/blob/master/tags.json)文件来管理搜索关键词的，目前我们已经为所有图标添加了中文关键词，因此我们可以通过中文对图标进行搜索和定位；但是由于关键词不是很健全，所以用户还是经常无法通过某个特定关键词搜索到已有图标。而目前我们还没有一个很好的自动化策略来穷举每一个图标的关键词，只能通过人肉添加的方式来进行完善，希望用户可以通过提[issue](https://github.com/Remix-Design/remixicon/issues) 或者pull request的方式来帮我们一块完善维护`tags.json`，让搜索功能变得更加好用。
+目前我们的[图标官网](https://remixicon.com)是通过[`tags.json`](https://github.com/Remix-Design/remixicon/blob/master/tags.json)文件来管理搜索关键词的，目前我们已经为所有图标添加了中文关键词，因此我们可以通过中文对图标进行搜索和定位；但是由于关键词不是很健全，所以用户还是经常无法通过某个特定关键词搜索到已有图标。而目前我们还没有一个很好的自动化策略来穷举每一个图标的关键词，只能通过人肉添加的方式来进行完善，希望用户可以通过提[issue](https://github.com/Remix-Design/remixicon/issues) 或者pull request的方式来帮我们一块完善维护 `tags.json`，让搜索功能变得更加好用。
 
 ## 相关项目
+
 [RemixIcon-Slides](https://github.com/Remix-Design/RemixIcon-Slides) Remix Icon的PPT版本和Keynote版本。
 
 ## 协议许可
-Remix Icon 使用的是 [Apache License Version 2.0](https://github.com/Remix-Design/remixicon/blob/master/License) 开源协议。请放心使用和分享本图标库，您可以查看协议详情来了解详细的开源策略。如果您能在您的产品介绍中署名 Remix Icon，我们将会非常感激，但这并不是必须的。唯一需要注意的是，您不能二次销售本图标库中的图标，否则我们会进行追究。
+
+Remix Icon 是基于 [Apache License Version 2.0](https://github.com/Remix-Design/remixicon/blob/master/License) 开源协议的。请放心使用和分享本图标库，您可以查看协议详情来了解详细的开源策略。如果您能在您的产品介绍中署名 Remix Icon，我们将会非常感激，但这并不是必须的。唯一需要注意的是，您不能二次销售本图标库中的图标，否则我们会进行追究。
+
+## 支持我们
+
+很简单，只需要点一下 GitHub 本项目右上角的小星星就可以了！精神鼓励就是支持我们持续维护本项目的最大动力。请我们喝杯咖啡当然也没问题哈哈~

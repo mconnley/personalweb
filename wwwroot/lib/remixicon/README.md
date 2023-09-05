@@ -3,12 +3,11 @@
 [![npm](https://img.shields.io/npm/v/remixicon.svg?labelColor=4A4A4A&color=006AFF&style=flat-square)](https://www.npmjs.com/package/remixicon)
 [![downloads](https://img.shields.io/npm/dt/remixicon.svg?labelColor=4A4A4A&color=23AF5F&style=flat-square)](https://www.npmjs.com/package/remixicon)
 [![](https://data.jsdelivr.com/v1/package/npm/remixicon/badge)](https://www.jsdelivr.com/package/npm/remixicon)
-[![spectrum](https://img.shields.io/badge/chat-Spectrum-7028F5.svg?labelColor=4A4A4A&style=flat-square)](https://spectrum.chat/remixdesign/remixicon)
-[![donate](https://img.shields.io/badge/-Donate-DA6429.svg?style=flat-square)](https://remixicon.com/#donate)
+[![donate](https://img.shields.io/badge/-Donate-DA6429.svg?style=flat-square)](https://remixicon.com/support-us)
 
 English | [简体中文](./README_CN.md)
 
-Remix Icon is a set of open-source neutral-style system symbols for designers and developers. Unlike a patchwork icon library, 2200+ icons are all elaborately crafted so that they are born with the gene of readability, consistency and perfect pixels. Each icon was designed in "Outlined" and "Filled" styles based on a 24x24 grid. Of course, all the icons are free for both personal and commercial use.
+Remix Icon is a set of open-source neutral-style system symbols for designers and developers. Unlike a patchwork icon library, 2400+ icons are all elaborately crafted so that they are born with the gene of readability, consistency and perfect pixels. Each icon was designed in "Outlined" and "Filled" styles based on a 24x24 grid. Of course, all the icons are free for both personal and commercial use.
 
 [![icon demo](http://cdn.remixicon.com/preview.svg)](https://remixicon.com)
 View the full set of Remix Icons at [remixicon.com](https://remixicon.com).
@@ -32,32 +31,32 @@ Using SVG on the web is as simple as JPEG or PNG. Such as:
 ```
 
 ### Webfont Usage
+
 > **Note:** You can import Remix Icon with npm install, cdn or download it manually.
 
 #### Installation
+
 > **Note:** If you'd like to use Remix Icon with a CDN, you can skip this installation step.
 
 ```
 npm install remixicon --save
 ```
 
-
-
 ```
 import 'remixicon/fonts/remixicon.css'
 ```
+
 > import CSS to your main.js
 
 #### CDN
+
 Copy the following code and add it to the &lt;head&gt; tag of your html document.
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
 ```
 
-> ==**Important Note:**== We've changed our CDN service to jsDelivr from v2.2.0, and the previous CDN service will be terminated on Jan 30, 2020. Please replace your old CDN to the new link above so as not to affect your business. We apologize for the inconvenience.
->
-> The `@2.5.0` in the CDN link can be changed to any history version we've published.
+> The `@3.4.0` in the CDN link can be changed to any history version we've published.
 
 #### Download Manually
 
@@ -71,6 +70,7 @@ Add icon with class name, class name rule: ri-{name}-{style}
 <i class="ri-admin-line"></i>
 <i class="ri-admin-fill"></i>
 ```
+
 > **Note:** We changed the class name prefixes from `remixicon-` to `ri` from v2.0.0;
 
 > **Note:** You can go to [remixicon.com](https://remixicon.com) to check the name of the icons. `-line` means the outlined style icon, and `-fill` means the filled style icon.
@@ -95,17 +95,18 @@ RemixIcon can be resized by css class integrated by `remixicon.css` . Icons inhe
 </div>
 ```
 
->  You can  check the [`remixicon.css`](https://github.com/Remix-Design/RemixIcon/blob/master/fonts/remixicon.css) file for more info and details.
+> You can  check the [`remixicon.css`](https://github.com/Remix-Design/RemixIcon/blob/master/fonts/remixicon.css) file for more info and details.
 
 ### SVG Sprite Usage
 
-Download [`remixicon.symbol.svg`](https://cdn.remixicon.com/releases/v2.5.0/remixicon.symbol.svg) file into your project directory，use icons with the `<use>` element, such as:
+Download [`remixicon.symbol.svg`](https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.symbol.svg) file into your project directory，use icons with the `<use>` element, such as:
 
 ```html
 <svg class='remix'>
   <use xlink:href="your-path/remixicon.symbol.svg#ri-admin-fill"></use>
 </svg>
 ```
+
 ```css
 .remix {
   width: 24px;
@@ -122,7 +123,7 @@ Download [`remixicon.symbol.svg`](https://cdn.remixicon.com/releases/v2.5.0/remi
 
 ### Icon Request
 
-If there is no suitable icon for your usage scenario, you can create an [issue](https://github.com/Remix-Design/remixicon/issues) with a title of "Icon request: <Icon name>" and fill the issue template.
+If there is no suitable icon for your usage scenario, you can create an [issue](https://github.com/Remix-Design/remixicon/issues) with a title of "Icon request: `<Icon name>`" and fill the issue template.
 
 > RemixIcon is mainly focuses on user interface icons. If we did not include the logo icons you were looking for, I recommend this icon library - [Simple Icons](https://github.com/simple-icons/simple-icons)
 
@@ -131,8 +132,13 @@ If there is no suitable icon for your usage scenario, you can create an [issue](
 We use [`tags.json`](https://github.com/Remix-Design/remixicon/blob/master/tags.json) file to manage the search keywords of our [website](https://remixicon.com). But at the moment, we don't have a good automatic method to complete the keywords for each icon. So we hope you can help us to improve the `tags.json` file by creating [issues](https://github.com/Remix-Design/remixicon/issues), sending emails or "pull request" of tags.json file to make the search engine better. Especially when one of our icons matches your scene but you don't find the icon with your keywords.
 
 ## Sub-projects
+
 [RemixIcon-Slides](https://github.com/Remix-Design/RemixIcon-Slides) PowerPoint and Keynote verison of Remix Icon.
 
 ## License
 
-Remix Icon is licensed under the [Apache License Version 2.0](https://github.com/Remix-Design/remixicon/blob/master/License).  Feel free to use these icons in your products and distribute them. We would be very grateful if you mention "Remix Icon" in your product info, but it's not required. The only thing we ask is that these icons are not for sale.
+Remix Icon is based on the [Apache License Version 2.0](https://github.com/Remix-Design/remixicon/blob/master/License) license.  Feel free to use these icons in your products and distribute them. We would be very grateful if you mention "Remix Icon" in your product info, but it's not required. The only thing we ask is that these icons are not for sale.
+
+## Support Us
+
+It's simple and easy. Just star our project and recommend it to your friends. Your encouragement is the greatest fuel to drive us forward.
