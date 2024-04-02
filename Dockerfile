@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:7.0-jammy AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 9000
 
@@ -10,7 +10,7 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 RUN mkdir /var/log/personalweb && chown -R appuser /var/log/personalweb
 USER appuser
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0-jammy AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm AS build
 WORKDIR /src
 COPY ["personalweb.csproj", "./"]
 COPY ["NuGet.Config", "./"]
