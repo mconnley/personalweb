@@ -11,9 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
     <PackageReference Include="O11yLib" Version="1.0.20" />
-    <PackageReference Include="OpenTelemetry" Version="1.5.0-alpha.1" />
+    <PackageReference Include="OpenTelemetry" Version="1.7.0" />
     <PackageReference Include="RestSharp" Version="110.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
