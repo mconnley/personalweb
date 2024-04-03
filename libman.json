@@ -3,11 +3,11 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "bootstrap@5.3.1",
+      "library": "bootstrap@5.3.3",
       "destination": "wwwroot\\lib\\bootstrap"
     },
     {
-      "library": "jquery@3.7.0",
+      "library": "jquery@3.7.1",
       "destination": "wwwroot\\lib\\jquery"
     },
     {
@@ -21,7 +21,7 @@
     },
     {
       "provider": "jsdelivr",
-      "library": "remixicon@3.5.0",
+      "library": "remixicon@4.2.0",
       "destination": "wwwroot\\lib\\remixicon"
     }
   ]
