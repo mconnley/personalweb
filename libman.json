@@ -21,7 +21,7 @@
     },
     {
       "provider": "jsdelivr",
-      "library": "remixicon@3.5.0",
+      "library": "remixicon@4.2.0",
       "destination": "wwwroot\\lib\\remixicon"
     }
   ]
