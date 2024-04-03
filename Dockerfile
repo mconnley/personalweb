@@ -10,7 +10,7 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 RUN mkdir /var/log/personalweb && chown -R appuser /var/log/personalweb
 USER appuser
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["personalweb.csproj", "./"]
 COPY ["NuGet.Config", "./"]
