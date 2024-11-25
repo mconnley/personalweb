@@ -119,8 +119,9 @@ try
         logger.Info("Waiting to shutdown...", new object());
         Thread.Sleep(5000);
     });
-
+    logger.Info("Config complete.", new object());
     app.Run();
+    logger.Info("Started", new object());
 }
 catch (System.Exception ex)
 {
