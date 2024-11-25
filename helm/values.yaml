@@ -22,6 +22,8 @@ secretData:
   latestBlogUrl: "https://blog.mywordpressblog.net/wp-json/wp/v2/posts?per_page=1"
   googleAnalyticsTagId: "G-FOO0BAR"
   googleTagsId: "GTM-BAZBOP"
+  redisHostname: "cache"
+
 
 env:
   "ASPNETCORE_ENVIRONMENT": "Production"
