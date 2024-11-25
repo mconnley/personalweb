@@ -1,0 +1,30 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  personalweb:
+    image: personalweb
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - configuration=Debug
+    ports:
+      - 9000:9000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+      - ./secrets:/app/secrets:ro
+    networks:
+      - frontend
+  cache:
+    image: redis
+    ports:
+      - 6379:6379
+    networks:
+      - frontend
+networks:
+  frontend:
+    name: personalweb-network
