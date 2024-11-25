@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.HttpLogging;
 using O11yLib;
 using NLog;
+using StackExchange.Redis;
 
 var logger = new MyLogger();
 
@@ -25,6 +26,14 @@ try
     builder.Services.AddScoped<IRequestIPFinder, RequestIPFinder>();
     builder.Services.AddScoped<MyLogger, MyLogger>();
     builder.Logging.ClearProviders();
+
+     var redisHostname = builder.Configuration["redisHostname"];
+     if (redisHostname == null)
+     {
+        throw new ArgumentNullException("redisHostname is Null");
+     }
+    builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisHostname));
+ 
     
     builder.Services.AddHsts(options =>
     {
