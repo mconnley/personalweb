@@ -23,6 +23,10 @@ namespace Components
             try
             {
                 var SiteKey = _configuration["siteKey"];
+                if (string.IsNullOrEmpty(SiteKey))
+                {
+                    throw new Exception("Config value siteKey is null or empty");
+                }
                 var current = _dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
                 if (current is null)
                 {

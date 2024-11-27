@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.HttpLogging;
 using O11yLib;
 using NLog;
+using StackExchange.Redis;
 
 var logger = new MyLogger();
 
@@ -25,6 +26,14 @@ try
     builder.Services.AddScoped<IRequestIPFinder, RequestIPFinder>();
     builder.Services.AddScoped<MyLogger, MyLogger>();
     builder.Logging.ClearProviders();
+
+     var redisHostname = builder.Configuration["redisHostname"];
+     if (redisHostname == null)
+     {
+        throw new ArgumentNullException("redisHostname is Null");
+     }
+    builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisHostname));
+ 
     
     builder.Services.AddHsts(options =>
     {
@@ -79,11 +88,11 @@ try
 
     app.Use(async (context, next) =>
     {
-        context.Response.Headers.Add("X-Frame-Options", "DENY");
-        context.Response.Headers.Add("Content-Security-Policy", csp);
-        context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-        context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
-        context.Response.Headers.Add("Strict-Transport-Security", "max-age=15768000; includeSubDomains; preload");
+        context.Response.Headers.Append("X-Frame-Options", "DENY");
+        context.Response.Headers.Append("Content-Security-Policy", csp);
+        context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+        context.Response.Headers.Append("X-XSS-Protection", "1; mode=block");
+        context.Response.Headers.Append("Strict-Transport-Security", "max-age=15768000; includeSubDomains; preload");
         await next();
     });
 
@@ -110,8 +119,9 @@ try
         logger.Info("Waiting to shutdown...", new object());
         Thread.Sleep(5000);
     });
-
+    logger.Info("Config complete.", new object());
     app.Run();
+    logger.Info("Started", new object());
 }
 catch (System.Exception ex)
 {

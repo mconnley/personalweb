@@ -5,16 +5,16 @@ namespace personalweb.Models
         public int? id { get; set; }
         public DateTime? date { get; set; }
         public string? link { get; set; }
-        public title? title { get; set; }
-        public excerpt? excerpt { get; set; }
+        public Title? title { get; set; }
+        public Excerpt? excerpt { get; set; }
     }
 
-    public class title
+    public class Title
     {
         public string? rendered { get; set; }
     }
 
-    public class excerpt
+    public class Excerpt
     {
         public string? rendered { get; set; }
     }
