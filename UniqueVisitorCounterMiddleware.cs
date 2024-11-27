@@ -17,6 +17,10 @@ namespace personalweb {
 
         public async Task InvokeAsync(HttpContext context, IDataAccessProvider dataAccessProvider){
             var visitorIdCookieName = _configuration["visitorIdCookieName"];
+            if (string.IsNullOrEmpty(visitorIdCookieName))
+            {
+                throw new Exception("Config value visitorIdCookieName is null or empty");
+            }
             if (
                 (
                     context.Request.Path == "/" ||
@@ -59,6 +63,10 @@ namespace personalweb {
             try
             {
                 var SiteKey = _configuration["siteKey"];
+                if (string.IsNullOrEmpty(SiteKey))
+                {
+                    throw new Exception("Config value siteKey is null");
+                }
                 var current = dataAccessProvider.GetSiteCountSingleRecord(SiteKey);
                 if (current is null)
                 {
