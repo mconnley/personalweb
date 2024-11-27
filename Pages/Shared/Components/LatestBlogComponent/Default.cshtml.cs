@@ -27,7 +27,7 @@ namespace Components
                     ServerCertificateCustomValidationCallback = (_, _, _, _) => true
                 };
                 List<LatestBlog> blogList = new();
-                string json;
+                string? json;
                 string keyName = "latest_blog";
                 json = await _redis.StringGetAsync(keyName);
                 if (string.IsNullOrEmpty(json))
