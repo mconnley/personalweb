@@ -32,7 +32,20 @@ try
      {
         throw new ArgumentNullException("redisHostname is Null");
      }
-    builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisHostname));
+
+     ConfigurationOptions co = new ConfigurationOptions()
+     {
+        SyncTimeout = 500,
+        EndPoints =
+        {
+            {redisHostname, 6379}
+        },
+        AbortOnConnectFail = false
+     };
+
+
+
+    builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(co));
  
     
     builder.Services.AddHsts(options =>
