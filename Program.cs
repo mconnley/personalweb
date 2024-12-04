@@ -11,6 +11,11 @@ var logger = new MyLogger();
 
 try
 {
+    if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")) && 
+        Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+        {
+            while (!Debugger.IsAttached) { Thread.Sleep(200); }
+        }
     logger.Info("Starting...", new object());
     var builder = WebApplication.CreateBuilder(args);
 

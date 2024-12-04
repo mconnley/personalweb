@@ -1,7 +1,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-
         {
             "name": "Docker .NET Attach (Preview)",
             "type": "docker",
@@ -16,7 +15,6 @@
                 "debuggerPath": "/remote_debugger/vsdbg"
             },
             "containerName": "personalweb-personalweb-1"
-            
         }
     ]
 }
