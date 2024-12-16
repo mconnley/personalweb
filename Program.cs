@@ -11,6 +11,11 @@ var logger = new MyLogger();
 
 try
 {
+    if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")) && 
+        Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+        {
+            while (!Debugger.IsAttached) { Thread.Sleep(200); }
+        }
     logger.Info("Starting...", new object());
     var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +37,20 @@ try
      {
         throw new ArgumentNullException("redisHostname is Null");
      }
-    builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisHostname));
+
+     ConfigurationOptions co = new ConfigurationOptions()
+     {
+        SyncTimeout = 500,
+        EndPoints =
+        {
+            {redisHostname, 6379}
+        },
+        AbortOnConnectFail = false
+     };
+
+
+
+    builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(co));
  
     
     builder.Services.AddHsts(options =>
