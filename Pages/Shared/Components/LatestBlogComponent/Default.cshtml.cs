@@ -29,17 +29,44 @@ namespace Components
                 List<LatestBlog> blogList = new();
                 string? json;
                 string keyName = "latest_blog";
-                json = await _redis.StringGetAsync(keyName);
+                json = "";
+                try
+                {
+                    json = await _redis.StringGetAsync(keyName);
+                }
+                catch (System.Exception ex)
+                {
+                    _logger.LogError(ex, "Error attempting to retrieve latest blog from CACHE: " + ex.Message);
+                }
+
                 if (string.IsNullOrEmpty(json))
                 {
+                    _logger.LogDebug("Blog Cache miss");
                     using var client = new HttpClient(handler);
-                    using HttpResponseMessage? resp = await client.GetAsync(_configuration["latestBlogUrl"]);
-                    json = await resp.Content.ReadAsStringAsync();
-                    var setTask = _redis.StringSetAsync(keyName, json);
-                    var expireTask = _redis.KeyExpireAsync(keyName, TimeSpan.FromHours(12));
+                    try
+                    {
+                        using HttpResponseMessage? resp = await client.GetAsync(_configuration["latestBlogUrl"]);
+                        json = await resp.Content.ReadAsStringAsync();
+                        try
+                        {
+                            var setTask = _redis.StringSetAsync(keyName, json);
+                            var expireTask = _redis.KeyExpireAsync(keyName, TimeSpan.FromHours(12));                            
+                        }
+                        catch (System.Exception ex)
+                        {
+                            
+                            _logger.LogError(ex, "Error attempting to write latest blog to cache: " + ex.Message);
+                        }
+
+                    }
+                    catch (System.Exception ex)
+                    {
+                        _logger.LogError(ex, "Error attempting to retrieve latest blog from SOURCE: " + ex.Message);
+                    }
                 }
+
                 
-                if (json is not null)
+                if (!string.IsNullOrEmpty(json))
                 {
                     var l = JsonConvert.DeserializeObject<List<LatestBlog>>(json);
                     if (l?.Count > 0)

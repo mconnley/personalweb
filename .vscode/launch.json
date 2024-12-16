@@ -1,7 +1,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-
         {
             "name": "Docker .NET Attach (Preview)",
             "type": "docker",
@@ -11,8 +10,11 @@
             "postDebugTask": "docker compose down",
             "sourceFileMap": {
                 "/src": "${workspaceFolder}"
-            }
-            
+            },
+            "netCore": {
+                "debuggerPath": "/remote_debugger/vsdbg"
+            },
+            "containerName": "personalweb-personalweb-1"
         }
     ]
 }
