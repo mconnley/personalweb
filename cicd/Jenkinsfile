@@ -36,7 +36,7 @@ spec:
       - name: jenkins-docker-cfg
         mountPath: /kaniko/.docker
   - name: helm
-    image: ${params.NEXUS_ROOT}:/jenkins-helm
+    image: ${params.NEXUS_ROOT}/jenkins-helm
     imagePullPolicy: IfNotPresent
     command:
     - sleep
@@ -44,7 +44,7 @@ spec:
     - 99d
     tty: true
   - name: curl
-    image: ${params.NEXUS_ROOT}:/jenkins-curl
+    image: ${params.NEXUS_ROOT}/jenkins-curl
     imagePullPolicy: IfNotPresent
     command:
     - sleep
