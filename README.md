@@ -1,5 +1,6 @@
 # personalweb
 
+v0.5.0
 
 For dev purposes only, create a /secrets folder and place the below in /secrets/secrets.json
 ```
