@@ -7,5 +7,3 @@ applications:
   metadata:
     labels:
       appName: homepage2
-  deployment:
-    max-in-flight: 1      
