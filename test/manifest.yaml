@@ -1,0 +1,9 @@
+applications:
+- name: homepage2
+  memory: 256M
+  buildpacks:
+  - paketo-buildpacks/nginx
+  instances: 3
+  metadata:
+    labels:
+      appName: homepage2

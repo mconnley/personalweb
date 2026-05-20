@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matt Connley • Personal Landing Page</title>
+  <meta name="description" content="Personal landing page for Matt Connley" />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-mark">MC</span>
+        <span class="logo-text">Matt Connley</span>
+      </div>
+
+      <nav class="main-nav" id="mainNav">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">☀️</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="section hero" highlightmenu="yes">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="hero-kicker">Hello, I’m Matt 👋</p>
+          <div class="hero-image">
+              <img src="profile-image.jpg" alt="Profile Photo" />
+          </div>
+          <h1 class="hero-title">
+            I'm an experienced <span class="accent">IT leader and innovator</span> in Chicago.
+          </h1>
+          <p class="hero-subtitle">
+            Full-stack engineer and builder of systems that are fast, secure, and resilient
+          </p>
+          <div class="hero-actions">
+            <a href="#hlskills" class="btn primary">My Skill Set</a>
+            <a href="#contact" class="btn secondary">Get in Touch</a>
+            <!-- <a href="files/matthew-connley-resume.pdf" class="btn secondary" download target="_blank" rel="noopener">Download Résumé</a> -->
+          </div>
+          <div class="hero-meta">
+            <div class="meta-item">
+              <span class="meta-label">Location</span>
+              <span class="meta-value">Chicago, United States</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Role</span>
+              <span class="meta-value">Architect Principal - Site Reliability Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="avatar-placeholder">
+            <span>MC</span>
+          </div>
+          <div class="hero-card-body">
+            <h2>Currently</h2>
+            <p>
+              Architect Principal - Site Reliability Engineering at a leading financial institution
+            </p>
+            <ul class="hero-card-list">
+              <li>SRE</li>
+              <li>Observability</li>
+              <li>Automation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About -->
+    <section id="about" class="section" highlightmenu="yes">
+      <div class="container two-col">
+        <div>
+          <h2 class="section-title">About</h2>
+          <p>I've been fascinated by technology for as long as I can remember.</p>
+          <p>Growing up, I loved to take things apart and put them back together. Tinkering with radios, cassette players, other various gadgets, toys, and of course Legos was part of my everyday fun. Soon PCs gained my interest, and while I may not have known it at the time, it was the start of an enduring desire to figure out how things work -- and find ways to make them work better.</p>
+          <p>I began my career relatively early, starting my first job at a local ISP when I was 16. Since then I've worked in a number of environments, ranging from small-town startups to global enterprises. I take great pride and pleasure in building creative, innovative solutions to the real-world problems I come across, and never turn down the chance to help make businesses more effective and efficient at what they do, no matter how daunting the challenge.</p>
+          <p>Over the course of my career, I've cultivated a diverse work background that spans engineering, architecture, and technical leadership. I've developed highly-available, highly-parallel, service-oriented applications supporting functions such as infrastructure and business process monitoring, trading operations, and centralized systems management. I also led the delivery of a private cloud platform and am currently the principal architect on an enterprise-wide observability program.</p>
+          <p>I pride myself on being as full-stack an engineer as I can, from the user experience all the way down "to the metal."</p>
+          <p> To me, technology is more than a career; it's something I love and a life-long passion that I'm lucky enough to pursue every day. Despite the fact that I've been in this field for over two decades, according to that old adage, I've never really worked a day in my life.</p>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Experience</span>
+            <span class="info-value">25+ years</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Specialty</span>
+            <span class="info-value">Site Reliability Engineering</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Industries</span>
+            <span class="info-value">Financial Services, Trading, FinTech</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Based in</span>
+            <span class="info-value">Chicago, Illinois</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Skills -->
+    <section id="skills" highlightmenu="yes">
+      <section id="hlskills" class="section section-alt">
+        <div class="container">
+          <h2 class="section-title">High Level Skills</h2>
+          <p class="section-intro">
+            General areas of technical expertise and other high-level skills
+          </p>
+          <div class="chips-grid">
+            <span class="chip">SRE</span>
+            <span class="chip">Infrastructure Engineering and Automation</span>
+            <span class="chip">Application Development</span>
+            <span class="chip">Monitoring & Observability</span>
+            <span class="chip">Private & Public Cloud</span>
+            <span class="chip">Technical Product Management</span>
+          </div>
+        </div>
+      </section>
+      <section id="techskills" class="section section">
+        <div class="container">
+          <h2 class="section-title">Technical Skills</h2>
+          <p class="section-intro">
+            Specific technologies, programming languages, and tools I've worked with
+          </p>
+          <div class="chips-grid">
+            <span class="chip">Windows & Linux OS</span>
+            <span class="chip">Load Balancing, Network Automation</span>
+            <span class="chip">VMWare vSphere</span>
+            <span class="chip">IIS, Active Directory</span>
+            <span class="chip">.NET (C#), ASP.NET/Core, MVC, REST, WPF/WCF, MVVM</span>
+            <span class="chip">PowerShell, Python, Shell Scripting</span>
+            <span class="chip">SQL Server, PostgreSQL, MySQL, MongoDB, InfluxDB, Prometheus</span>
+            <span class="chip">Kubernetes, Rancher, Azure, AWS, GCP, SaltStack, Ansible, Docker, Helm</span>
+            <span class="chip">Splunk, Grafana Stack, Telegraf, OpenTelemetry</span>
+          </div>
+        </div>
+      </section>
+      <section id="ntskills" class="section section-alt">
+        <div class="container">
+          <h2 class="section-title">Non-Technical Skills</h2>
+          <p class="section-intro">
+            Additional relevant skills and proficiencies
+          </p>
+          <div class="chips-grid">
+            <span class="chip">Excellent Written Communication</span>
+            <span class="chip">Collaborative, Empathetic, Team-Oriented Mindset</span>
+            <span class="chip">Relationship Builder</span>
+            <span class="chip">Strong Presentation/Speaking Ability</span>
+            <span class="chip">Deep Curiousity and Life-Long Passion for Technical Problem Solving</span>
+          </div>
+        </div>
+      </section>
+      <section id="certs" class="section section">
+        <div class="container">
+          <h2 class="section-title">Certifications</h2>
+          <div class="chips-grid">
+            <span class="chip">Microsoft Azure Fundamentals/AZ-900 - 2022</span>
+            <span class="chip">Lean IT Foundation - 2018</span>
+          </div>
+        </div>
+      </section>
+      <section id="interests" class="section section-alt">
+        <div class="container">
+          <h2 class="section-title">Non-Technical Skills</h2>
+          <p class="section-intro">
+            Things I enjoy outside of the office
+          </p>
+          <div class="chips-grid">
+            <span class="chip">Home Labbing</span>
+            <span class="chip">Home Automation</span>
+            <span class="chip">Sailing</span>
+            <span class="chip">3D Printing</span>          
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section section" highlightmenu="yes">
+      <div class="container contact-inner">
+        <div>
+          <h2 class="section-title">Contact</h2>
+          <p class="section-intro">
+            I am not seeking new opportunities, but I am always open to connecting with like-minded professionals. 
+            Feel free to reach out to me through any of the following channels:
+          </p>
+          <ul class="contact-list">
+            <li><span>Email:</span> <a href="mailto:matt@connley.net">matt@connley.net</a></li>
+            <li><span>LinkedIn:</span> <a href="https://www.linkedin.com/in/mattconnley/" target="_blank" rel="noopener">linkedin.com/in/mattconnley</a></li>
+            <li><span>GitHub:</span> <a href="https://www.github.com/mconnley/" target="_blank" rel="noopener">github.com/mconnley</a></li>
+            <li><span>Blog:</span> <a href="https://blog.connley.net/" target="_blank" rel="noopener">blog.connley.net</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Matt Connley. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
