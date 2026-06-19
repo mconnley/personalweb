@@ -1,6 +1,6 @@
 applications:
 - name: homepage2
-  memory: 256M
+  memory: 64M
   buildpacks:
   - paketo-buildpacks/nginx
   instances: 3
